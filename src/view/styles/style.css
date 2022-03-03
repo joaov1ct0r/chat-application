@@ -8,6 +8,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: #0f1015;
+    font-family: sans-serif;
 }
 
 body main {
@@ -26,4 +27,9 @@ body main .form-container {
     width: 450px;
     height: 320px;
     padding: 35px;
+}
+
+body main .form-container h1 {
+    color: white;
+    font-size: 35px;
 }
