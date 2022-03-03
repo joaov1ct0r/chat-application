@@ -32,6 +32,7 @@ body main .form-container {
 body main .form-container h1 {
     color: white;
     font-size: 35px;
+    border-bottom: 1px solid white;
 }
 
 body main .form-container form {
