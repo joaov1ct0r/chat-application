@@ -60,3 +60,9 @@ body main .form-container form button {
     border: 0;
     border-radius: 3px;
 }
+
+body main .form-container form button:hover {
+    cursor: pointer;
+    background-color: black;
+    transition: 0.9s;
+}
