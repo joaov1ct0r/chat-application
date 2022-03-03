@@ -82,3 +82,12 @@ body main .form-container form fieldset button:hover {
 body main .form-container .register-container {
     color: white;
 }
+
+body main .form-container .register-container button {
+    height: 30px;
+    width: 50%;
+    background-color: #262c37;
+    color: white;
+    border: 0;
+    border-radius: 3px;
+}
