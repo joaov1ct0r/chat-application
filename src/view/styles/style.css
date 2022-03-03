@@ -9,13 +9,20 @@ body {
     width: 100vw;
 }
 
+body main {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
 body main .form-container {
     display: flex;
     flex-direction: column;
     margin: auto;
     align-items: center;
     background-color: #181920;
-    width: 355px;
+    width: 450px;
     height: 320px;
     padding: 35px;
 }
