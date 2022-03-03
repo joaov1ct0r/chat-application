@@ -78,3 +78,7 @@ body main .form-container form fieldset button:hover {
     background-color: black;
     transition: 0.9s;
 }
+
+body main .form-container .register-container {
+    color: white;
+}
