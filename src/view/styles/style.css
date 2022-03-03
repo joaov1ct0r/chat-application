@@ -50,3 +50,13 @@ body main .form-container form input {
     border-radius: 3px;
     padding: 5px;
 }
+
+body main .form-container form button {
+    margin-top: 10px;
+    height: 30px;
+    width: 50%;
+    background-color: #262c37;
+    color: white;
+    border: 0;
+    border-radius: 3px;
+}
