@@ -97,3 +97,7 @@ body main .form-container .register-container button:hover {
     background-color: black;
     transition: 0.9s;
 }
+
+body main .form-container .register-container a {
+    text-decoration: none;
+}
