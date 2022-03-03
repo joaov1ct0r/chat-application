@@ -42,8 +42,14 @@ body main .form-container form {
     margin-top: 2%;
 }
 
+body main .form-container form label {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+}
+
 body main .form-container form input {
-    margin-top: 10px;
     height: 20px;
     border: 0;
     outline: none;
