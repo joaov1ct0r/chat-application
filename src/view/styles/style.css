@@ -41,3 +41,12 @@ body main .form-container form {
     flex-direction: column;
     margin-top: 2%;
 }
+
+body main .form-container form input {
+    margin-top: 10px;
+    height: 20px;
+    border: 0;
+    outline: none;
+    border-radius: 3px;
+    padding: 5px;
+}
