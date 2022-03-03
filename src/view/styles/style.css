@@ -10,8 +10,12 @@ body {
 }
 
 body main .form-container {
+    display: flex;
+    flex-direction: column;
     margin: auto;
-    height: 400px;
-    width: 400px;
-    background-color: blue;
+    align-items: center;
+    background-color: #181920;
+    width: 355px;
+    height: 320px;
+    padding: 35px;
 }
