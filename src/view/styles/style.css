@@ -42,14 +42,18 @@ body main .form-container form {
     margin-top: 2%;
 }
 
-body main .form-container form label {
+body main .form-container form fieldset {
+    padding: 10px;
+}
+
+body main .form-container form fieldset label {
     display: inline-block;
     width: 100%;
     text-align: center;
     margin: 5px 0;
 }
 
-body main .form-container form input {
+body main .form-container form fieldset input {
     height: 20px;
     border: 0;
     outline: none;
@@ -57,7 +61,7 @@ body main .form-container form input {
     padding: 5px;
 }
 
-body main .form-container form button {
+body main .form-container form fieldset button {
     margin-top: 10px;
     height: 30px;
     width: 50%;
@@ -67,7 +71,7 @@ body main .form-container form button {
     border-radius: 3px;
 }
 
-body main .form-container form button:hover {
+body main .form-container form fieldset button:hover {
     cursor: pointer;
     background-color: black;
     transition: 0.9s;
