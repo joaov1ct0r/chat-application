@@ -91,3 +91,9 @@ body main .form-container .register-container button {
     border: 0;
     border-radius: 3px;
 }
+
+body main .form-container .register-container button:hover {
+    cursor: pointer;
+    background-color: black;
+    transition: 0.9s;
+}
