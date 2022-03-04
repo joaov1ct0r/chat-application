@@ -18,3 +18,5 @@ try {
 } catch (error) {
     throw error;
 }
+
+export default sequelize;
