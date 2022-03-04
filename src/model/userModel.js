@@ -27,7 +27,8 @@ const user = dbConnection.define(
         }
     },
     {
-        freezeTableName: true
+        freezeTableName: true,
+        tableName: 'users'
     }
 );
 
