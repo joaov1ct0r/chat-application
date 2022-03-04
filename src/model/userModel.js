@@ -24,3 +24,5 @@ const user = dbConnection.define('user', {
         allowNull: false
     }
 });
+
+export default user;
