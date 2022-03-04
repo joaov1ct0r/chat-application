@@ -2,7 +2,7 @@ import sequelize from 'sequelize';
 
 let { Sequelize } = sequelize;
 
-const sequelize = new Sequelize({
+const dbConnection = new Sequelize({
     dialect: 'mysql',
     host: process.env.DB_HOST,
     username: process.env.DB_USER,
@@ -12,11 +12,11 @@ const sequelize = new Sequelize({
 });
 
 try {
-    await sequelize.authenticate();
+    await dbConnection.authenticate();
 
     console.log('Conexão estabelecida com sucesso!');
 } catch (error) {
     throw error;
 }
 
-export default sequelize;
+export default dbConnection;
