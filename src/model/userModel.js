@@ -32,4 +32,6 @@ const user = dbConnection.define(
     }
 );
 
+user.sync();
+
 export default user;
