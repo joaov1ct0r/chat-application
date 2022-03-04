@@ -10,19 +10,19 @@ const user = dbConnection.define(
             primaryKey: true
         },
         email: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(100),
             allowNull: false
         },
         nome: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(100),
             allowNull: false
         },
         nascimento: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(10),
             allowNull: false
         },
         senha: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(250),
             allowNull: false
         }
     },
