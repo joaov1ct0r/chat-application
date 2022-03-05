@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 
 let user = {
     async createUser(req, res) {
-        let { error } = registerValidate(req.body);
+        let { error } = userValidate.registerValidate(req.body);
 
         if (error) {
             return res.status(400).send('Falha no cadastramento', error);
