@@ -6,6 +6,8 @@ import router from './routes/userRoutes';
 
 let app = express();
 
+app.use('/api', express.json(), router);
+
 app.listen(process.env.SERVER_PORT, () => {
     console.log('Server running');
 });
