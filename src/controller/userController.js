@@ -1,7 +1,7 @@
 import User from '../model/userModel';
 
 let user = {
-    createUser(req, res) {
+    async createUser(req, res) {
         let user = User.build({
             email: req.body.email,
             nome: req.body.nome,
