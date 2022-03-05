@@ -12,6 +12,8 @@ let user = {
             return res.status(400).send('Falha no cadastramento', error);
         }
 
+        let registeredUser = User.findOne({ email: req.body.email });
+
         let user = User.build({
             email: req.body.email,
             nome: req.body.nome,
