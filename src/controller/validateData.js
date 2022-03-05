@@ -1,5 +1,7 @@
 import Joi from '@hapi/joi';
 
+let userValidate = {};
+
 const registerValidate = data => {
     const schema = Joi.object({
         email: Joi.string().required().min(10).max(100),
