@@ -1,5 +1,7 @@
 import User from '../model/userModel.js';
 
+import { registerValidate } from './validateData.js';
+
 import bcrypt from 'bcryptjs';
 
 let user = {
