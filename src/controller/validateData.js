@@ -7,4 +7,6 @@ const registerValidate = data => {
         nascimento: Joi.string().required().min(10).max(10),
         senha: Joi.string().required().min(8).max(250)
     });
+
+    return schema.validate(data);
 };
