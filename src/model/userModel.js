@@ -29,7 +29,8 @@ const User = dbConnection.define(
     },
     {
         freezeTableName: true,
-        tableName: 'users'
+        tableName: 'users',
+        timestamps: false
     }
 );
 
