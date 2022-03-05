@@ -6,6 +6,7 @@ import bcrypt from 'bcryptjs';
 
 let user = {
     async createUser(req, res) {
+        let { error } = registerValidate(req.body);
         let user = User.build({
             email: req.body.email,
             nome: req.body.nome,
