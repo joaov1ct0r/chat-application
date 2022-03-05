@@ -1,5 +1,7 @@
 import User from '../model/userModel.js';
 
+import bcrypt from 'bcryptjs';
+
 let user = {
     async createUser(req, res) {
         let user = User.build({
