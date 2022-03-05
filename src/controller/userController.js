@@ -14,6 +14,10 @@ let user = {
 
         let registeredUser = User.findOne({ email: req.body.email });
 
+        if (registeredUser) {
+            return res.status(400).send('Email ja cadastrado');
+        }
+
         let user = User.build({
             email: req.body.email,
             nome: req.body.nome,
