@@ -9,10 +9,12 @@ let user = {
         let { error } = userValidate.registerValidate(req.body);
 
         if (error) {
-            return res.status(400).send('Falha no cadastramento', error);
+            return res.status(400).send(error);
         }
 
-        let registeredUser = User.findOne({ email: req.body.email });
+        let registeredUser = await User.findOne({
+            where: { email: req.body.email }
+        });
 
         if (registeredUser) {
             return res.status(400).send('Email ja cadastrado');
