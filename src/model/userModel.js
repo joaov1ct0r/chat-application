@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 
-import dbConnection from '../config/database/database';
+import dbConnection from '../config/database/database.js';
 
 const User = dbConnection.define(
     'users',
