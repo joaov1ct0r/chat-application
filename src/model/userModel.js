@@ -2,12 +2,13 @@ import { DataTypes } from 'sequelize';
 
 import dbConnection from '../config/database/database';
 
-const user = dbConnection.define(
+const User = dbConnection.define(
     'users',
     {
         id: {
             type: DataTypes.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         email: {
             type: DataTypes.STRING(100),
@@ -32,6 +33,6 @@ const user = dbConnection.define(
     }
 );
 
-user.sync();
+User.sync();
 
-export default user;
+export default User;
