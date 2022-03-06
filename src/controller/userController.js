@@ -44,6 +44,11 @@ let user = {
         if (!selectedUser) {
             return res.status(400).send('Falha na autenticação');
         }
+
+        let comparedPassword = bcrypt.compareSync(
+            req.body.senha,
+            selectedUser.senha
+        );
     }
 };
 
