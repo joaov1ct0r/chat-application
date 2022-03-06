@@ -49,6 +49,10 @@ let user = {
             req.body.senha,
             selectedUser.senha
         );
+
+        if (!comparedPassword) {
+            return res.status(400).send('Falha na autenticação');
+        }
     }
 };
 
