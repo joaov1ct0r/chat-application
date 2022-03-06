@@ -34,6 +34,12 @@ let user = {
         } catch (error) {
             res.status(400).send(error);
         }
+    },
+
+    async userLogin(req, res) {
+        let selectedUser = await User.findOne({
+            where: { email: req.body.email }
+        });
     }
 };
 
