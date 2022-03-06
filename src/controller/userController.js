@@ -40,6 +40,10 @@ let user = {
         let selectedUser = await User.findOne({
             where: { email: req.body.email }
         });
+
+        if (!selectedUser) {
+            return res.status(400).send('Falha na autenticação');
+        }
     }
 };
 
