@@ -12,4 +12,6 @@ function userRegister() {
     let nome = document.getElementById('nome').value;
 
     let nascimento = document.getElementById('data').value;
+
+    let senha = document.getElementById('senha').value;
 }
