@@ -62,6 +62,8 @@ let user = {
             },
             process.env.JWT_TOKEN_SECRET
         );
+
+        res.header('auth-token', token);
     }
 };
 
