@@ -55,6 +55,13 @@ let user = {
         if (!comparedPassword) {
             return res.status(400).send('Falha na autenticação');
         }
+
+        let token = jwt.sign(
+            {
+                id: selectedUser.id
+            },
+            process.env.JWT_TOKEN_SECRET
+        );
     }
 };
 
