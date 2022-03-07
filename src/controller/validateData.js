@@ -10,6 +10,13 @@ let userValidate = {
         });
 
         return schema.validate(data);
+    },
+
+    loginValidate(data) {
+        const schema = Joi.object({
+            email: Joi.string().required().min(10).max(100),
+            senha: Joi.string().required().min(8).max(250)
+        });
     }
 };
 
