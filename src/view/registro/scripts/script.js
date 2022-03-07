@@ -14,4 +14,12 @@ function userRegister() {
     let nascimento = document.getElementById('data').value;
 
     let senha = document.getElementById('senha').value;
+
+    let options = {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify({ email, nome, nascimento, senha })
+    };
 }
