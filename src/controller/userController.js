@@ -64,6 +64,8 @@ let user = {
         );
 
         res.header('auth-token', token);
+
+        res.send('Login realizado com sucesso!');
     }
 };
 
