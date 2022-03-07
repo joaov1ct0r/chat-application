@@ -6,6 +6,8 @@ import router from './routes/userRoutes.js';
 
 import path from 'path';
 
+import { fileURLToPath } from 'url';
+
 let app = express();
 
 app.use('/api', express.json(), router);
