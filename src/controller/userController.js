@@ -4,6 +4,8 @@ import userValidate from './validateData.js';
 
 import bcrypt from 'bcryptjs';
 
+import jwt from 'jsonwebtoken';
+
 let user = {
     async createUser(req, res) {
         let { error } = userValidate.registerValidate(req.body);
