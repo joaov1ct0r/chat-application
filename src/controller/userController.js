@@ -39,6 +39,7 @@ let user = {
     },
 
     async userLogin(req, res) {
+        let { error } = userValidate.loginValidate(req.body);
         let selectedUser = await User.findOne({
             where: { email: req.body.email }
         });
