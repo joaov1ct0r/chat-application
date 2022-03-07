@@ -17,6 +17,8 @@ let userValidate = {
             email: Joi.string().required().min(10).max(100),
             senha: Joi.string().required().min(8).max(250)
         });
+
+        return schema.validate(data);
     }
 };
 
