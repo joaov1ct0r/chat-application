@@ -10,4 +10,6 @@ function userRegister() {
     let email = document.getElementById('email').value;
 
     let nome = document.getElementById('nome').value;
+
+    let nascimento = document.getElementById('data').value;
 }
