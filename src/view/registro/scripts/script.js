@@ -22,4 +22,12 @@ function userRegister() {
         },
         body: JSON.stringify({ email, nome, nascimento, senha })
     };
+
+    fetch(url, options).then(response => {
+        if (response.status === 200) {
+            alert('Cadastro realizado com sucesso!');
+        } else {
+            alert('Falha no cadastro, tente novamente!');
+        }
+    });
 }
