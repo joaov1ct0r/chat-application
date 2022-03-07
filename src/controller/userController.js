@@ -40,6 +40,10 @@ let user = {
 
     async userLogin(req, res) {
         let { error } = userValidate.loginValidate(req.body);
+
+        if (error) {
+            return res.status(400).send(error);
+        }
         let selectedUser = await User.findOne({
             where: { email: req.body.email }
         });
