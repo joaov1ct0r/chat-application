@@ -20,7 +20,7 @@ function userLogin() {
     };
 
     fetch(url, options).then(response => {
-        if (response.status(200)) {
+        if (response.status === 200) {
             alert('Login realizado com sucesso!');
         } else {
             alert('Falha na autenticação');
