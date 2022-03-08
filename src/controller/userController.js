@@ -32,7 +32,7 @@ let user = {
         try {
             const savedUser = await user.save();
 
-            res.send(savedUser);
+            res.redirect('http://localhost:3000/');
         } catch (error) {
             res.status(400).send(error);
         }
