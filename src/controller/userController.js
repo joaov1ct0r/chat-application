@@ -70,7 +70,7 @@ let user = {
 
         res.header('auth-token', token);
 
-        res.send('Login realizado com sucesso!');
+        res.status(200).redirect('http://localhost:3000/chat');
     }
 };
 
