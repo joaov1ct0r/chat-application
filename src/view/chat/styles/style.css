@@ -25,3 +25,7 @@ body main .chat-container {
     padding: 35px;
     text-align: start;
 }
+
+body main .chat-container ul {
+    list-style: none;
+}
