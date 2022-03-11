@@ -61,4 +61,10 @@ body main .chat-container .input-container button {
     background-color: #262c37;
     color: white;
     border: 0;
+    cursor: pointer;
+}
+
+body main .chat-container .input-container button:hover {
+    color: black;
+    transition: 0.7s;
 }
