@@ -20,6 +20,7 @@ body main {
 
 body main .chat-container {
     display: flex;
+    flex-direction: column;
     background-color: #181920;
     width: 850px;
     height: 450px;
@@ -29,6 +30,7 @@ body main .chat-container {
 
 body main .chat-container ul {
     list-style: none;
+    height: 300px;
 }
 
 body main .chat-container li {
