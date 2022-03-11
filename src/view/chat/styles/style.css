@@ -52,6 +52,13 @@ body main .chat-container .input-container input {
     width: 300px;
     border: 0;
     outline: none;
-    border-radius: 3px;
     padding: 5px;
+}
+
+body main .chat-container .input-container button {
+    height: 30px;
+    width: 50px;
+    background-color: #262c37;
+    color: white;
+    border: 0;
 }
