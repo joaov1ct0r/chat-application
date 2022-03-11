@@ -29,3 +29,7 @@ body main .chat-container {
 body main .chat-container ul {
     list-style: none;
 }
+
+body main .chat-container li {
+    color: white;
+}
