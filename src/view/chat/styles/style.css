@@ -19,6 +19,7 @@ body main {
 }
 
 body main .chat-container {
+    display: flex;
     background-color: #181920;
     width: 850px;
     height: 450px;
@@ -32,4 +33,14 @@ body main .chat-container ul {
 
 body main .chat-container li {
     color: white;
+}
+
+body main .chat-container .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    background-color: #0f1015;
+    width: 100%;
+    height: 15%;
 }
