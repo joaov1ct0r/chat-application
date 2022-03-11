@@ -19,12 +19,9 @@ body main {
 }
 
 body main .chat-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background-color: #181920;
     width: 850px;
     height: 450px;
     padding: 35px;
-    text-align: center;
+    text-align: start;
 }
