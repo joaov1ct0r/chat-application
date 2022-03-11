@@ -10,3 +10,10 @@ body {
     background-color: #0f1015;
     font-family: sans-serif;
 }
+
+body main {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
