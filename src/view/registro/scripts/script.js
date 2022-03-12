@@ -25,8 +25,11 @@ async function userRegister() {
 
     const response = await fetch(url, options);
 
+    console.log(response);
+
     if (response.status === 200) {
         alert('Cadastro realizado com sucesso!');
+        window.location.href = response.url;
     } else {
         alert('Falha no cadastro!');
     }
