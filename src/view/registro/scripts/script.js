@@ -13,7 +13,7 @@ function userRegister() {
 
     let nascimento = document.getElementById('data').value;
 
-    let senha = document.getElementById('senha').value;
+    let senha = document.getElementById('password').value;
 
     let options = {
         method: 'POST',
