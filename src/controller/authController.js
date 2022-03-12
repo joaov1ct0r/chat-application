@@ -9,5 +9,7 @@ export default function (req, res, next) {
 
     try {
         const userVerified = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
+
+        next();
     } catch (error) {}
 }
