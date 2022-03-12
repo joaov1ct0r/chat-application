@@ -12,4 +12,10 @@ const __dirname = path.dirname(__filename);
 
 let router = express.Router();
 
+router.get(
+    '/',
+    authController,
+    express.static(path.join(__dirname, '/view', '/chat'))
+);
+
 export default router;
