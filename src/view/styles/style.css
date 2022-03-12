@@ -35,7 +35,7 @@ body main .form-container h1 {
     border-bottom: 1px solid white;
 }
 
-body main .form-container form {
+body main .form-container .form {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -43,11 +43,11 @@ body main .form-container form {
     margin-bottom: 10px;
 }
 
-body main .form-container form fieldset {
+body main .form-container .form fieldset {
     padding: 10px;
 }
 
-body main .form-container form fieldset label {
+body main .form-container .form fieldset label {
     display: inline-block;
     width: 100%;
     text-align: center;
@@ -55,7 +55,7 @@ body main .form-container form fieldset label {
     color: white;
 }
 
-body main .form-container form fieldset input {
+body main .form-container .form fieldset input {
     height: 20px;
     border: 0;
     outline: none;
@@ -63,7 +63,7 @@ body main .form-container form fieldset input {
     padding: 5px;
 }
 
-body main .form-container form fieldset button {
+body main .form-container .form fieldset button {
     margin-top: 10px;
     height: 30px;
     width: 50%;
@@ -73,7 +73,7 @@ body main .form-container form fieldset button {
     border-radius: 3px;
 }
 
-body main .form-container form fieldset button:hover {
+body main .form-container .form fieldset button:hover {
     cursor: pointer;
     background-color: black;
     transition: 0.9s;
