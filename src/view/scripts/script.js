@@ -21,8 +21,6 @@ async function userLogin() {
 
     const response = await fetch(url, options);
 
-    console.log(response);
-
     if (response.status === 200) {
         alert('Login realizado com sucesso!');
         window.location.href = response.url;
