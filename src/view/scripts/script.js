@@ -19,11 +19,12 @@ function userLogin() {
         body: JSON.stringify({ email, senha })
     };
 
-    fetch(url, options).then(response => {
-        if (response.status === 200) {
-            alert('Login realizado com sucesso!');
-        } else {
-            alert('Falha na autenticação');
-        }
-    });
+    const response = fetch(url, options);
+
+    if (response.status === 200) {
+        alert('Login realizado com sucesso!');
+        window.location.href = response.url;
+    } else {
+        alert('Falha na autenticação');
+    }
 }
