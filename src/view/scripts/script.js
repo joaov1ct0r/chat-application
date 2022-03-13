@@ -19,7 +19,9 @@ function userLogin() {
         body: JSON.stringify({ email, senha })
     };
 
-    const response = fetch(url, options);
+    const response = await fetch(url, options);
+
+    console.log(response);
 
     if (response.status === 200) {
         alert('Login realizado com sucesso!');
