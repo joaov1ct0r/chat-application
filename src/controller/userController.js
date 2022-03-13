@@ -70,7 +70,7 @@ let user = {
 
         res.header('auth-token', token);
 
-        res.status(200).redirect('/chat/');
+        res.redirect('/chat/');
     }
 };
 
