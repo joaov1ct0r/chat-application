@@ -1,7 +1,5 @@
 import authController from '../controller/authController.js';
 
-import connectionHandle from '../controller/chatController.js';
-
 import express from 'express';
 
 import path from 'path';
@@ -17,8 +15,7 @@ let chatRouter = express.Router();
 chatRouter.get(
     '/',
     authController,
-    express.static(path.join(__dirname, '/view', '/chat')),
-    connectionHandle
+    express.static(path.join(__dirname, '/view', '/chat'))
 );
 
 export default chatRouter;
