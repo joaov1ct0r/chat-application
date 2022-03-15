@@ -1,9 +1,9 @@
 import io from '../index.js';
 
-let chat = {
-    connection: io.on('connection', () => {
-        console.log('new connection');
-    })
+let onConnection = socket => {
+    console.log('new connection');
 };
 
-export default chat;
+const connectionHandle = io.on('connection', onConnection);
+
+export default connectionHandle;
