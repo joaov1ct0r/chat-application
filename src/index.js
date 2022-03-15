@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 import express from 'express';
 
-import socketIO from 'socket.io';
+import { Server } from 'socket.io';
 
 import router from './routes/userRoutes.js';
 
