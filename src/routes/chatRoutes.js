@@ -17,7 +17,8 @@ let chatRouter = express.Router();
 chatRouter.get(
     '/',
     authController,
-    express.static(path.join(__dirname, '/view', '/chat'))
+    express.static(path.join(__dirname, '/view', '/chat')),
+    chatController.connection
 );
 
 export default chatRouter;
