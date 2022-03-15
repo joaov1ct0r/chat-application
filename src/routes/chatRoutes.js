@@ -1,5 +1,7 @@
 import authController from '../controller/authController.js';
 
+import chatController from '../controller/chatController.js';
+
 import express from 'express';
 
 import path from 'path';
