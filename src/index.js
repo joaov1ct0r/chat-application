@@ -8,7 +8,7 @@ import path from 'path';
 
 import { fileURLToPath } from 'url';
 
-import routerChat from './routes/userChatRoutes.js';
+import chatRouter from './routes/chatRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 

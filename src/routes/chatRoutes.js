@@ -10,12 +10,12 @@ const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
 
-let routerChat = express.Router();
+let chatRouter = express.Router();
 
-routerChat.get(
+chatRouter.get(
     '/',
     authController,
     express.static(path.join(__dirname, '/view', '/chat'))
 );
 
-export default routerChat;
+export default chatRouter;
