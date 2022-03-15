@@ -1,5 +1,9 @@
 import io from '../index.js';
 
-io.on('connection', () => {
-    console.log('new connection');
-});
+let chat = {
+    connection: io.on('connection', () => {
+        console.log('new connection');
+    })
+};
+
+export default chat;
