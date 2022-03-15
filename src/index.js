@@ -29,3 +29,7 @@ const server = app.listen(process.env.SERVER_PORT, () => {
 });
 
 const io = new Server(server);
+
+io.on('connection', () => {
+    console.log('new connection');
+});
