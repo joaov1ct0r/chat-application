@@ -27,3 +27,5 @@ app.use('/chat', chatRouter);
 const server = app.listen(process.env.SERVER_PORT, () => {
     console.log('Server running');
 });
+
+const io = socketIO(server);
