@@ -6,6 +6,8 @@ import { Server } from 'socket.io';
 
 import router from './routes/userRoutes.js';
 
+import chatController from './controller/chatController.js';
+
 import path from 'path';
 
 import { fileURLToPath } from 'url';
