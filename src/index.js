@@ -29,3 +29,5 @@ const server = app.listen(process.env.SERVER_PORT, () => {
 });
 
 const io = socketIO(server);
+
+export default io;
