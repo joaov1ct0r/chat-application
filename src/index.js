@@ -20,7 +20,7 @@ app.use('/api', express.json(), router);
 
 app.use('/', express.static(path.join(__dirname, '/view')));
 
-app.use('/chat', routerChat);
+app.use('/chat', chatRouter);
 
 app.listen(process.env.SERVER_PORT, () => {
     console.log('Server running');
