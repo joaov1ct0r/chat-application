@@ -6,8 +6,6 @@ import { Server } from 'socket.io';
 
 import router from './routes/userRoutes.js';
 
-import chatController from './controller/chatController.js';
-
 import path from 'path';
 
 import { fileURLToPath } from 'url';
@@ -31,5 +29,3 @@ const server = app.listen(process.env.SERVER_PORT, () => {
 });
 
 const io = new Server(server);
-
-export default io;
