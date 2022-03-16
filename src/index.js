@@ -33,5 +33,5 @@ const io = new Server(server);
 io.on('connection', socket => {
     console.log('new connection');
 
-    socket.emit('new connection', { msg: 'Novo usuario conectado' });
+    io.emit('new connection', { msg: 'Novo usuario conectado' });
 });
