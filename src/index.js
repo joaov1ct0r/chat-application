@@ -30,6 +30,8 @@ const server = app.listen(process.env.SERVER_PORT, () => {
 
 const io = new Server(server);
 
-io.on('connection', () => {
+io.on('connection', socket => {
     console.log('new connection');
+
+    socket.emit('new connection', { msg: 'Novo usuario conectado' });
 });
