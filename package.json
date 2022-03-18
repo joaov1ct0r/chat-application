@@ -13,8 +13,7 @@
     "nodejs",
     "express",
     "mysql",
-    "sequelize",
-    "oauth2"
+    "sequelize"
   ],
   "license": "ISC",
   "dependencies": {
