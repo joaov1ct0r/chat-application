@@ -32,8 +32,4 @@ const io = new Server(server);
 
 io.on('connection', socket => {
     console.log('new connection');
-
-    socket.broadcast.emit('new connection', { msg: 'Novo usuario conectado' });
-
-    socket.emit('welcome', { msg: 'Seja bem vindo!' });
 });
