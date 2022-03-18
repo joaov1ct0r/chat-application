@@ -3,3 +3,5 @@ function handleConnection(socket) {
 
     socket.emit('welcome', { msg: 'Seja bem vindo!' });
 }
+
+export default handleConnection;
