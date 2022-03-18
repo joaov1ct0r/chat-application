@@ -7,7 +7,17 @@ socket.on('new connection', data => {
 });
 
 function handleNewConnection({ msg }) {
-    const newMessage = `<li>${msg}</li>`;
+    const newMessage = `<li>Server: ${msg}</li>`;
+
+    ul.innerHTML += newMessage;
+}
+
+socket.on('welcome', data => {
+    handleOwnConnection();
+});
+
+function handleOwnConnection({ msg }) {
+    const newMessage = `<li>Server: ${msg}</li>`;
 
     ul.innerHTML += newMessage;
 }
