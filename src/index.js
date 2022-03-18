@@ -8,6 +8,8 @@ import router from './routes/userRoutes.js';
 
 import path from 'path';
 
+import handleConnection from './controller/handleConnection.js';
+
 import { fileURLToPath } from 'url';
 
 import chatRouter from './routes/chatRoutes.js';
