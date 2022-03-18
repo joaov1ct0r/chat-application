@@ -13,7 +13,7 @@ function handleNewConnection({ msg }) {
 }
 
 socket.on('welcome', data => {
-    handleOwnConnection();
+    handleOwnConnection(data);
 });
 
 function handleOwnConnection({ msg }) {
