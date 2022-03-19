@@ -16,7 +16,7 @@ function validateAuth(req, res, next) {
             return res.redirect('/');
         }
     } catch (error) {
-        return res.redirect('/');
+        throw error;
     }
 }
 
