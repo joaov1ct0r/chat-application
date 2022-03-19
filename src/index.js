@@ -22,7 +22,7 @@ let app = express();
 
 app.use('/api', express.json(), router);
 
-app.use('/', express.static(path.join(__dirname, '/view')));
+app.use('/login', express.static(path.join(__dirname, '/view')));
 
 app.use(
     '/chat',
