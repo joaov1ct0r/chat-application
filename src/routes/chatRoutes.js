@@ -1,5 +1,7 @@
 import express from 'express';
 
+import validateAuth from '../controller/authController';
+
 import { fileURLToPath } from 'url';
 
 import path from 'path';
