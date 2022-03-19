@@ -4,7 +4,7 @@ function validateAuth(req, res, next) {
     const token = req.header('auth-token');
 
     if (!token) {
-        return res.redirect('/login');
+        return res.redirect('/');
     }
 
     try {
@@ -13,10 +13,10 @@ function validateAuth(req, res, next) {
         if (userVerified) {
             next();
         } else {
-            return res.redirect('/login');
+            return res.redirect('/');
         }
     } catch (error) {
-        return res.redirect('/login');
+        return res.redirect('/');
     }
 }
 
