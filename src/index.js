@@ -12,7 +12,7 @@ import handleConnection from './controller/handleConnection.js';
 
 import { fileURLToPath } from 'url';
 
-import chatRouter from './routes/chatRoutes.js';
+import validateAuth from './controller/authController.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -24,7 +24,11 @@ app.use('/api', express.json(), router);
 
 app.use('/', express.static(path.join(__dirname, '/view')));
 
-app.use('/chat', chatRouter);
+app.use(
+    '/chat',
+    validateAuth,
+    express.static(path.join(__dirname, '/view', '/chat'))
+);
 
 const server = app.listen(process.env.SERVER_PORT, () => {
     console.log('Server running');
