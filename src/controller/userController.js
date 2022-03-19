@@ -74,7 +74,7 @@ let user = {
 
         res.header('auth-token', token);
 
-        res.redirect('/chat/');
+        res.redirect('/chat');
     }
 };
 
