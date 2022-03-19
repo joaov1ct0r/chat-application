@@ -12,8 +12,6 @@ function validateAuth(req, res, next) {
 
         if (userVerified) {
             next();
-        } else {
-            return res.redirect('/');
         }
     } catch (error) {
         return res.redirect('/');
