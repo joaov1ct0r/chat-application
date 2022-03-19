@@ -32,7 +32,11 @@ let user = {
         try {
             const savedUser = await user.save();
 
-            res.redirect('/');
+            if (savedUser) {
+                res.redirect('/');
+            } else {
+                res.redirect('/register');
+            }
         } catch (error) {
             res.status(400).send(error);
         }
