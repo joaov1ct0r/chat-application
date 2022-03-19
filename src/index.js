@@ -25,6 +25,11 @@ app.use('/api', express.json(), router);
 app.use('/login', express.static(path.join(__dirname, '/view')));
 
 app.use(
+    '/register',
+    express.static(path.join(__dirname, '/view', '/registro'))
+);
+
+app.use(
     '/chat',
     validateAuth,
     express.static(path.join(__dirname, '/view', '/chat'))
