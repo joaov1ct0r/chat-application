@@ -1,4 +1,4 @@
-import authController from '../controller/authController.js';
+import validateAuth from '../controller/authController.js';
 
 import express from 'express';
 
@@ -14,7 +14,7 @@ let chatRouter = express.Router();
 
 chatRouter.get(
     '/',
-    authController,
+    validateAuth,
     express.static(path.join(__dirname, '/view', '/chat'))
 );
 

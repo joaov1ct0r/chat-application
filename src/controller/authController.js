@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 
-export default function (req, res, next) {
+function validateAuth(req, res, next) {
     const token = req.header('auth-token');
 
     if (!token) {
-        return res.status(401).send('Falha na autenticação');
+        return res.redirect('/login');
     }
 
     try {
@@ -12,8 +12,12 @@ export default function (req, res, next) {
 
         if (userVerified) {
             next();
+        } else {
+            return res.redirect('/login');
         }
     } catch (error) {
-        return res.status(401).send('Falha na autenticação');
+        return res.redirect('/login');
     }
 }
+
+export default validateAuth;
