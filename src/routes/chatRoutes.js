@@ -1,6 +1,6 @@
 import express from 'express';
 
-import validateAuth from '../controller/authController';
+import validateAuth from '../controller/authController.js';
 
 import { fileURLToPath } from 'url';
 
