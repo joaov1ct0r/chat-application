@@ -10,7 +10,9 @@ export default function (req, res, next) {
     try {
         const userVerified = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
 
-        next();
+        if (userVerified) {
+            next();
+        }
     } catch (error) {
         return res.status(401).send('Falha na autenticação');
     }
