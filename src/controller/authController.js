@@ -12,9 +12,8 @@ export default function (req, res, next) {
 
         if (!userVerified) {
             return res.redirect('/');
-        } else {
-            next();
         }
+        next();
     } catch (error) {
         throw error;
     }
