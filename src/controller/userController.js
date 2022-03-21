@@ -76,7 +76,7 @@ let user = {
             if (token) {
                 res.header('auth-token', token);
 
-                res.redirect('/chat/');
+                res.redirect('/chat');
             }
         } catch (error) {
             throw error;
