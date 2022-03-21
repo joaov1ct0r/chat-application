@@ -1,23 +1,21 @@
 import jwt from 'jsonwebtoken';
 
-function validateAuth(req, res, next) {
+export default function (req, res, next) {
     const token = req.header('auth-token');
 
     if (!token) {
-        res.redirect('/');
+        return res.redirect('/');
     }
 
     try {
         const userVerified = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
 
-        if (userVerified) {
-            next();
+        if (!userVerified) {
+            return res.redirect('/');
         } else {
-            res.redirect('/');
+            next();
         }
     } catch (error) {
         throw error;
     }
 }
-
-export default validateAuth;

@@ -10,7 +10,7 @@ import path from 'path';
 
 import handleConnection from './controller/handleConnection.js';
 
-import chatRoutes from './routes/chatRoutes.js';
+import authController from './controller/authController.js';
 
 import { fileURLToPath } from 'url';
 
@@ -29,7 +29,11 @@ app.use(
     express.static(path.join(__dirname, '/view', '/registro'))
 );
 
-app.use('/chat', chatRoutes);
+app.use(
+    '/chat',
+    authController,
+    express.static(path.join(__dirname, '/view', '/chat'))
+);
 
 const server = app.listen(process.env.SERVER_PORT, () => {
     console.log('Server running');

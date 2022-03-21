@@ -65,16 +65,22 @@ let user = {
             return res.status(400).send('Falha na autenticação');
         }
 
-        let token = jwt.sign(
-            {
-                id: selectedUser.id
-            },
-            process.env.JWT_TOKEN_SECRET
-        );
+        try {
+            let token = jwt.sign(
+                {
+                    id: selectedUser.id
+                },
+                process.env.JWT_TOKEN_SECRET
+            );
 
-        res.header('auth-token', token);
+            if (token) {
+                res.header('auth-token', token);
 
-        res.redirect('/chat');
+                res.redirect('/chat/');
+            }
+        } catch (error) {
+            throw error;
+        }
     }
 };
 
