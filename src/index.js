@@ -4,6 +4,8 @@ import express from 'express';
 
 import { Server } from 'socket.io';
 
+import cookieParser from 'cookie-parser';
+
 import router from './routes/userRoutes.js';
 
 import handleConnection from './controller/handleConnection.js';
@@ -31,7 +33,7 @@ app.use(
 
 app.use(
     '/chat',
-    express.cookieParser(),
+    cookieParser(),
     authController,
     express.static(path.join(__dirname, '/view', '/chat'))
 );
