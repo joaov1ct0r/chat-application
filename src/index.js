@@ -6,11 +6,11 @@ import { Server } from 'socket.io';
 
 import router from './routes/userRoutes.js';
 
-import path from 'path';
-
 import handleConnection from './controller/handleConnection.js';
 
 import authController from './controller/authController.js';
+
+import path from 'path';
 
 import { fileURLToPath } from 'url';
 

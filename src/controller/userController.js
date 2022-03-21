@@ -75,6 +75,7 @@ let user = {
 
             if (token) {
                 res.header('auth-token', token);
+                // REDIRECT DOESNT ALLOW SENDING MANUAL HEADERS
 
                 res.redirect('/chat');
             }
