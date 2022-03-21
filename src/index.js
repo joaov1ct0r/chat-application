@@ -31,6 +31,7 @@ app.use(
 
 app.use(
     '/chat',
+    express.cookieParser(),
     authController,
     express.static(path.join(__dirname, '/view', '/chat'))
 );
