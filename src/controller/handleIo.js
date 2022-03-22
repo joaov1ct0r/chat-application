@@ -12,6 +12,8 @@ export default function (server) {
 
         socket.emit('welcome', { msg: 'Seja bem vindo!' });
 
+        socket.emit('messages', messages);
+
         socket.on('new_message', data => {
             messages.push(data.msg);
 
