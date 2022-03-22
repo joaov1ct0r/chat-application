@@ -1,8 +1,14 @@
 const ul = document.getElementsByTagName('ul')[0];
 
-const submitButton = document.getElementById('submitButton');
-
 const socket = io('http://localhost:3000');
+
+document.addEventListener('DOMContentLoaded', () => {
+    const submitButton = document.getElementById('submitButton');
+
+    submitButton.addEventListener('click', () => {
+        sendNewMessage();
+    });
+});
 
 socket.on('new connection', data => {
     handleNewConnection(data);
@@ -24,32 +30,24 @@ function handleOwnConnection({ msg }) {
     ul.innerHTML += newMessage;
 }
 
-submitButton.addEventListener('click', () => {
-    sendNewMessage();
-});
-
 function sendNewMessage() {
-    const formDiv = submitButton.parentNode;
-
-    const message = formDiv.children[0].value;
+    const message = document.getElementById('text').value;
 
     socket.emit('new_message', { msg: message });
 
-    formDiv.children[0].value = '';
+    document.getElementById('text').value = '';
 }
 
 socket.on('messages', data => {
-    handleNewMessages(data);
+    handleMessages(data);
 });
 
-function handleNewMessages(data) {
+function handleMessages(data) {
     let listMessages = [];
 
     data.forEach(msg => {
         listMessages += `<li>${msg}</li>`;
     });
-
-    console.log(listMessages);
 
     ul.innerHTML = listMessages;
 }
