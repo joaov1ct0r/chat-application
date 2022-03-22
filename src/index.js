@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 
 import router from './routes/userRoutes.js';
 
-import handleConnection from './controller/handleConnection.js';
+import handleIo from './controller/handleIo.js';
 
 import authController from './controller/authController.js';
 
