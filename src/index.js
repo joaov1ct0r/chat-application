@@ -2,8 +2,6 @@ import 'dotenv/config';
 
 import express from 'express';
 
-import { Server } from 'socket.io';
-
 import cookieParser from 'cookie-parser';
 
 import router from './routes/userRoutes.js';
@@ -40,12 +38,4 @@ app.use(
 
 const server = app.listen(process.env.SERVER_PORT, () => {
     console.log('Server running');
-});
-
-const io = new Server(server);
-
-io.on('connection', socket => {
-    console.log('new connection');
-
-    handleConnection(socket);
 });
