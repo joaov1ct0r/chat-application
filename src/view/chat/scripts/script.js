@@ -6,6 +6,14 @@ submitButton.addEventListener('click', () => {
     sendNewMessage();
 });
 
+function sendNewMessage() {
+    const formDiv = submitButton.parentNode;
+
+    const message = formDiv.children[0].value;
+
+    socket.emit('new_message', message);
+}
+
 const socket = io('http://localhost:3000');
 
 socket.on('new connection', data => {
