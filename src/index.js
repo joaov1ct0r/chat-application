@@ -39,3 +39,5 @@ app.use(
 const server = app.listen(process.env.SERVER_PORT, () => {
     console.log('Server running');
 });
+
+handleIo(server);
