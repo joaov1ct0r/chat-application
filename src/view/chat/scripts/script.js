@@ -1,5 +1,7 @@
 const ul = document.getElementsByTagName('ul')[0];
 
+const submitButton = document.getElementById('submitButton');
+
 const socket = io('http://localhost:3000');
 
 socket.on('new connection', data => {
