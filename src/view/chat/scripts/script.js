@@ -33,9 +33,23 @@ function sendNewMessage() {
 
     const message = formDiv.children[0].value;
 
-    socket.emit('new_message', message);
+    socket.emit('new_message', { msg: message });
+
+    formDiv.children[0].value = '';
 }
 
 socket.on('messages', data => {
     handleNewMessages(data);
 });
+
+function handleNewMessages(data) {
+    let listMessages = [];
+
+    data.forEach(msg => {
+        listMessages += `<li>${msg}</li>`;
+    });
+
+    console.log(listMessages);
+
+    ul.innerHTML = listMessages;
+}

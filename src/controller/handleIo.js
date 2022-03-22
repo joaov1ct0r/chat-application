@@ -6,8 +6,6 @@ export default function (server) {
     let messages = [];
 
     io.on('connection', socket => {
-        console.log('new connection');
-
         socket.broadcast.emit('new connection', {
             msg: 'Novo usuario conectado'
         });
@@ -15,7 +13,7 @@ export default function (server) {
         socket.emit('welcome', { msg: 'Seja bem vindo!' });
 
         socket.on('new_message', data => {
-            messages.push(data);
+            messages.push(data.msg);
 
             io.emit('messages', messages);
         });
