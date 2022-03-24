@@ -11,6 +11,12 @@ body {
     font-family: sans-serif;
 }
 
+body header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 body main {
     display: flex;
     height: 100vh;
