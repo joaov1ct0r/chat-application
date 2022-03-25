@@ -47,22 +47,27 @@
 <h2>MODO DE USO</h2>
 
 <h3>GIT</h3>
+<hr>
 
 <p>FAÇA O DOWNLOADS DO REPOSITORIO OU USE:<br><code>git@github.com:joaov1ct0r/chat-application.git</code></p>
 
 <h3>DEPENDENCIAS</h3>
+<hr>
 
 <p>INSTALE TODAS AS DEPENDENCIAS DO PROJETO COM O COMANDO: <code>npm install</code></p>
 
 <h3>.env</h3>
+<hr>
 
 <p>CRIE UM ARQUIVO .env (SE NÃO EXISTIR) NO DIRETORIO PRINCIPAL DO PROJETO</p>
 
 <h3>Sequelize</h3>
+<hr>
 
 <p>FAÇA A CONEXÃO COM SEU MYSQL SERVER INSERINDO DADOS NO ARQUIVO .ENV</p>
 
 <h3>SERVER</h3>
+<hr>
 
 <p>APOS TER OS ARQUIVOS EM SUA MAQUINA INICIE O SERVIDOR WEB NO SEU TERMINAL COM O COMANDO:<br><code>node src/index.js</code></p>
 
