@@ -9,6 +9,7 @@ body {
     width: 100vw;
     background-color: #0f1015;
     font-family: sans-serif;
+    overflow: hidden;
 }
 
 body header {
@@ -24,6 +25,13 @@ body header .userContainer {
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid white;
+}
+
+body header .userContainer input {
+    width: 300px;
+    border: 0;
+    outline: none;
+    padding: 5px;
 }
 
 body main {
