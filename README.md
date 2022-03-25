@@ -72,3 +72,11 @@
 <p>APOS TER OS ARQUIVOS EM SUA MAQUINA INICIE O SERVIDOR WEB NO SEU TERMINAL COM O COMANDO:<br><code>node src/index.js</code></p>
 
 <p>APOS ISSO ABRA O NAVEGADOR NA ROTA:<br><code>localhost:3000/</code> A APLICAÇÃO ESTARA DISPONIVEL PARA USO.</p>
+
+<h2>Picture</h2>
+
+![chatLogin](https://user-images.githubusercontent.com/79015823/160205447-6fc4ed8a-cc34-40a3-ae3f-ed8a97da43b1.jpg)
+
+![chatRegister](https://user-images.githubusercontent.com/79015823/160205481-d89b4a18-7c68-466f-a892-7ba7d4c77df5.jpg)
+
+![chat](https://user-images.githubusercontent.com/79015823/160205508-be55eb00-9853-4364-a363-d2eeefd4f81d.jpg)
