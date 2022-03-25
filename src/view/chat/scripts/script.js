@@ -31,9 +31,13 @@ function handleOwnConnection({ msg }) {
 }
 
 function sendNewMessage() {
+    const user = document.getElementById('userInput').value;
+
+    if (!user) return;
+
     const message = document.getElementById('text').value;
 
-    socket.emit('new_message', { msg: message });
+    socket.emit('new_message', { user, msg: message });
 
     document.getElementById('text').value = '';
 }
