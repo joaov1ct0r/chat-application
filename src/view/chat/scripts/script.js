@@ -49,8 +49,8 @@ socket.on('messages', data => {
 function handleMessages(data) {
     let listMessages = [];
 
-    data.forEach(msg => {
-        listMessages += `<li>${msg}</li>`;
+    data.forEach(obj => {
+        listMessages += `<li>${obj.user}: ${obj.msg}</li>`;
     });
 
     ul.innerHTML = listMessages;
