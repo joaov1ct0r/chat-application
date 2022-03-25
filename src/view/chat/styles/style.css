@@ -34,6 +34,15 @@ body header .userContainer input {
     padding: 5px;
 }
 
+body header .userContainer button {
+    height: 26px;
+    width: 50px;
+    background-color: #262c37;
+    color: white;
+    border: 0;
+    cursor: pointer;
+}
+
 body main {
     display: flex;
     height: 100vh;
