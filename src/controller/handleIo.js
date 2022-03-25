@@ -15,7 +15,7 @@ export default function (server) {
         socket.emit('messages', messages);
 
         socket.on('new_message', data => {
-            messages.push(data.msg);
+            messages.push(data);
 
             io.emit('messages', messages);
         });
