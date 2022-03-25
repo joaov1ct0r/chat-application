@@ -33,7 +33,11 @@ function handleOwnConnection({ msg }) {
 function sendNewMessage() {
     const user = document.getElementById('userInput').value;
 
-    if (!user) return;
+    if (!user) {
+        alert('Defina um usuario!');
+
+        return;
+    }
 
     const message = document.getElementById('text').value;
 
