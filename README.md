@@ -50,6 +50,10 @@
 
 <p>FAÇA O DOWNLOADS DO REPOSITORIO OU USE:<br><code>git@github.com:joaov1ct0r/chat-application.git</code></p>
 
+<h3>DEPENDENCIAS</h3>
+
+<p>INSTALE TODAS AS DEPENDENCIAS DO PROJETO COM O COMANDO: <code>npm install</code></p>
+
 <h3>.env</h3>
 
 <p>CRIE UM ARQUIVO .env (SE NÃO EXISTIR) NO DIRETORIO PRINCIPAL DO PROJETO</p>
