@@ -1,10 +1,6 @@
 let submitButton = document.getElementById('submitButton');
 
-submitButton.addEventListener('click', () => {
-    userRegister();
-});
-
-async function userRegister() {
+submitButton.addEventListener('click', async () => {
     let url = 'http://localhost:3000/api/register';
 
     let email = document.getElementById('email').value;
@@ -25,12 +21,9 @@ async function userRegister() {
 
     const response = await fetch(url, options);
 
-    console.log(response);
-
     if (response.status === 200) {
         alert('Cadastro realizado com sucesso!');
+
         window.location.href = response.url;
-    } else {
-        alert('Falha no cadastro!');
-    }
-}
+    } else alert('Falha no cadastro!');
+});
