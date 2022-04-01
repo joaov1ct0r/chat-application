@@ -1,10 +1,6 @@
 let submitButton = document.getElementById('submitButton');
 
-submitButton.addEventListener('click', () => {
-    userLogin();
-});
-
-async function userLogin() {
+submitButton.addEventListener('click', async () => {
     let email = document.getElementById('email').value;
 
     let senha = document.getElementById('senha').value;
@@ -23,8 +19,7 @@ async function userLogin() {
 
     if (response.status === 200) {
         alert('Login realizado com sucesso!');
+
         window.location.href = response.url;
-    } else {
-        alert('Falha na autenticação');
-    }
-}
+    } else alert('Falha na autenticação');
+});
