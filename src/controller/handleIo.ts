@@ -1,9 +1,9 @@
 import { Server } from "socket.io";
 
-export default function (server) {
+export default function socketIO(server) {
   const io = new Server(server);
 
-  const messages = [];
+  const messages: Object[] = [];
 
   io.on("connection", (socket) => {
     socket.broadcast.emit("new connection", {
@@ -14,7 +14,7 @@ export default function (server) {
 
     socket.emit("messages", messages);
 
-    socket.on("new_message", (data) => {
+    socket.on("new_message", (data: Object) => {
       messages.push(data);
 
       io.emit("messages", messages);

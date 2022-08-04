@@ -1,61 +1,61 @@
-const ul = document.getElementsByTagName('ul')[0];
+const ul = document.getElementsByTagName("ul")[0];
 
-const socket = io('http://localhost:3000');
+const socket = io("http://localhost:3000");
 
-document.addEventListener('DOMContentLoaded', () => {
-    const submitButton = document.getElementById('submitButton');
+document.addEventListener("DOMContentLoaded", () => {
+  const submitButton = document.getElementById("submitButton");
 
-    submitButton.addEventListener('click', () => {
-        sendNewMessage();
-    });
+  submitButton.addEventListener("click", () => {
+    sendNewMessage();
+  });
 });
 
-socket.on('new connection', data => {
-    handleNewConnection(data);
+socket.on("new connection", (data) => {
+  handleNewConnection(data);
 });
 
 function handleNewConnection({ msg }) {
-    const newMessage = `<li>Server: ${msg}</li>`;
+  const newMessage = `<li>Server: ${msg}</li>`;
 
-    ul.innerHTML += newMessage;
+  ul.innerHTML += newMessage;
 }
 
-socket.on('welcome', data => {
-    handleOwnConnection(data);
+socket.on("welcome", (data) => {
+  handleOwnConnection(data);
 });
 
 function handleOwnConnection({ msg }) {
-    const newMessage = `<li>Server: ${msg}</li>`;
+  const newMessage = `<li>Server: ${msg}</li>`;
 
-    ul.innerHTML += newMessage;
+  ul.innerHTML += newMessage;
 }
 
 function sendNewMessage() {
-    const user = document.getElementById('userInput').value;
+  const user = document.getElementById("userInput").value;
 
-    if (!user) {
-        alert('Defina um usuario!');
+  if (!user) {
+    alert("Defina um usuario!");
 
-        return;
-    }
+    return;
+  }
 
-    const message = document.getElementById('text').value;
+  const message = document.getElementById("text").value;
 
-    socket.emit('new_message', { user, msg: message });
+  socket.emit("new_message", { user, msg: message });
 
-    document.getElementById('text').value = '';
+  document.getElementById("text").value = "";
 }
 
-socket.on('messages', data => {
-    handleMessages(data);
+socket.on("messages", (data) => {
+  handleMessages(data);
 });
 
 function handleMessages(data) {
-    let listMessages = [];
+  let listMessages = [];
 
-    data.forEach(obj => {
-        listMessages += `<li>${obj.user}: ${obj.msg}</li>`;
-    });
+  data.forEach((obj) => {
+    listMessages += `<li>${obj.user}: ${obj.msg}</li>`;
+  });
 
-    ul.innerHTML = listMessages;
+  ul.innerHTML = listMessages;
 }
