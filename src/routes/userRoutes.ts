@@ -1,17 +1,22 @@
 import express from "express";
 
-import auth from "../middlewares/auth";
-
 import CreateUserController from "../controller/CreateUserController";
 
 import ICreateUserController from "../interfaces/ICreateUserController";
+
+import AuthenticateUserController from "../controller/AuthenticateUserController";
+
+import IAuthenticateUserController from "../interfaces/IAuthenticateUserController";
 
 const userRouter: express.Router = express.Router();
 
 const createUserController: ICreateUserController = new CreateUserController();
 
-router.post("/login", userLogin);
+const authenticateUserController: IAuthenticateUserController =
+  new AuthenticateUserController();
 
-router.post("/register", createUserController.handle);
+userRouter.post("/login", authenticateUserController.handle);
+
+userRouter.post("/register", createUserController.handle);
 
 export default userRouter;
