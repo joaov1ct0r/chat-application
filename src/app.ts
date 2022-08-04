@@ -12,8 +12,6 @@ import swaggerUi from "swagger-ui-express";
 
 import swaggerDocs from "./swagger.json";
 
-import socketIO from "./controller/handleIo.js";
-
 import path from "path";
 
 import { fileURLToPath } from "url";
@@ -69,5 +67,3 @@ export default class App {
     this.server.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
   }
 }
-
-handleIo(server);
