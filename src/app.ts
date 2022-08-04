@@ -52,7 +52,7 @@ export default class App {
       express.static(path.join(__dirname, "/view", "/registro"))
     );
 
-    app.use(
+    this.server.use(
       "/chat",
       auth,
       express.static(path.join(__dirname, "/view", "/chat"))
