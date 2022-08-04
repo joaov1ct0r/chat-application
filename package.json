@@ -1,8 +1,8 @@
 {
-  "name": "chat",
+  "name": "node-chat-socket-mvc",
   "author": "github.com/joaov1ct0r",
   "version": "1.0.0",
-  "description": "Chat para conversas",
+  "description": "Sistema feito em arquitetura MVC de registro e login de usuarios com chat para conversas entre usuarios registrados, feito em NodeJS com TypeScript utilizando Express e armazenando dados no banco de dados MySQL utilizando o ORM Sequelize.",
   "main": "index.js",
   "type": "module",
   "scripts": {

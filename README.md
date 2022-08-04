@@ -1,4 +1,4 @@
-# Chat em NodeJS
+# node-chat-socket-mvc
 
 <h1>EM DESENVOLVIMENTO</h1>
 
@@ -6,50 +6,39 @@
 
 <ul>
   <li>NodeJS</li>
-  <p><code>sudo apt install nodejs</code></p>
   <br>
   <li>NPM</li>
-  <p><code>sudo apt install npm</code></p>
   <br>
   <li>Express</li>
-  <p><code>npm install express</code></p>
   <br>
   <li>Sequelize</li>
-  <p><code>npm install sequelize</code></p>
   <br>
   <li>MySQL</li>
-  <p><code>npm install mysql2</code></p>
   <br>
   <li>bcrypt</li>
-  <p><code>npm install bcryptjs</code></p>
   <br>
   <li>dotenv</li>
-  <p><code>npm install dotenv</code></p>
   <br>
   <li>JWT</li>
-  <p><code>npm install jsonwebtoken</code></p>
   <br>
   <li>@Hapi/Joi</li>
-  <p><code>npm install @hapi/joi</code></p>
   <br>
   <li>cookie-parser</li>
-  <p><code>npm install cookie-parser</code></p>
   <br>
   <li>Socket.IO</li>
-  <p><code>npm install socket.io</code></p>
   <br>
 </ul>
 
 <h2>Sobre</h2>
 
-<p>Aplicação de um Chat com tela de cadastro, login e chat utilizando a arquitetura MVC, com o front-end desenvolvido em HTML, CSS e JavaScript, e o back-end em NodeJS(Express), com rotas protegidas por JWT, validação de dados utilizando Hapi Joi e encriptando senhas com bcrypt e armazenando dados no Banco de dados MySQL com o ORM Sequelize.</p>
+<p>Sistema feito em arquitetura MVC de registro e login de usuarios com chat para conversas entre usuarios registrados, feito em NodeJS com TypeScript utilizando Express e armazenando dados no banco de dados MySQL utilizando o ORM Sequelize.</p>
 
 <h2>MODO DE USO</h2>
 
 <h3>GIT</h3>
 <hr>
 
-<p>FAÇA O DOWNLOADS DO REPOSITORIO OU USE:<br><code>git@github.com:joaov1ct0r/chat-application.git</code></p>
+<p>FAÇA O DOWNLOADS DOS ARQUIVOS OU USE SSH:<br><code>git pull git@github.com:joaov1ct0r/node-chat-socket-mvc.git</code></p>
 
 <h3>DEPENDENCIAS</h3>
 <hr>
@@ -74,14 +63,24 @@
 <h3>Sequelize</h3>
 <hr>
 
-<p>FAÇA A CONEXÃO COM SEU MYSQL SERVER INSERINDO DADOS NO ARQUIVO .ENV</p>
+<p>APOS INSERIR OS DADOS NO ARQUIVO .env DIGITE EM SEU TERMINAL: 
+  <br><code>npx sequelize-cli db:create</code>
+  <br><code>npx sequelize-cli db:migrate</code>
+</p>
 
 <h3>SERVER</h3>
 <hr>
 
-<p>APOS TER OS ARQUIVOS EM SUA MAQUINA INICIE O SERVIDOR WEB NO SEU TERMINAL COM O COMANDO:<br><code>npm start</code></p>
+<p>APOS TER OS ARQUIVOS EM SUA MAQUINA ESCOLHA O MODO EM QUE QUER RODAR O PROJETO:
+  <br>PRODUÇÃO: <code>npm run build</code>
+  <code>npm run start</code>
 
-<p>APOS ISSO ABRA O NAVEGADOR NA ROTA:<br><code>localhost:3000/</code> A APLICAÇÃO ESTARA DISPONIVEL PARA USO.</p>
+<br>DESENVOLVIMENTO: <code>npm run dev</code>
+
+</p>
+
+<p>APOS INICIAR O PROJETO EM SEU MODO PREFERIDO VA PARA A ROTA:<br><code>http://localhost:3000/api/docs</code>
+PARA VER AS ROTAS DISPONIVEIS PARA FAZER AS REQUISIÇÕES</p>
 
 <h2>Picture</h2>
 
