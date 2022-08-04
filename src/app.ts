@@ -1,26 +1,30 @@
-import "dotenv/config";
-
 import express from "express";
 
 import cookieParser from "cookie-parser";
 
-import router from "./routes/userRoutes.js";
+import userRouter from "./routes/userRoutes.js";
 
-import handleIo from "./controller/handleIo.js";
-
-import authController from "./controller/authController.js";
+import socketIO from "./controller/handleIo.js";
 
 import path from "path";
 
 import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url);
+const __filename: string = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
 
+export default class App {
+  public server: express.Application;
+
+  private middlewares() {
+    this.server.use(express.json());
+  }
+}
+
 const app = express();
 
-app.use("/api", express.json(), router);
+app.use("/api", router);
 
 app.use("/", express.static(path.join(__dirname, "/view", "/login")));
 
