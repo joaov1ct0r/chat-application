@@ -2,7 +2,9 @@ import { DataTypes, ModelStatic } from "sequelize";
 
 import DB from "../config/database";
 
-const User = DB.define(
+import IUser from "../../interfaces/IUser";
+
+const User: ModelStatic<IUser> = DB.define(
   "users",
   {
     id: {
