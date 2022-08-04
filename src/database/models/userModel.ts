@@ -1,8 +1,8 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, ModelStatic } from "sequelize";
 
-import dbConnection from "../config/database/database.js";
+import DB from "../config/database";
 
-const User = dbConnection.define(
+const User = DB.define(
   "users",
   {
     id: {
