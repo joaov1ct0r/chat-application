@@ -57,6 +57,7 @@
   <li>DB_PASSWORD = SENHA DA SUA DB</li>
   <li>DB_DATABASE = SUA DB</li>
   <li>DB_PORT = PORTA DA DB</li>
+  <li>FILE_NAME_ENV = ROTA PARA SEU ARQUIVO app.ts</li>
   <li>JWT_TOKEN_SECRET = SEU JWT TOKEN SECRET</li>
 </ul>
 
