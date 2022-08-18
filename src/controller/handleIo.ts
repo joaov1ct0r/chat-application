@@ -5,8 +5,6 @@ import { getRedis, setRedis } from "../utils/redisConfig";
 export default function socketIO(server) {
   const io = new Server(server);
 
-  const messages: Object[] = [];
-
   io.on("connection", (socket) => {
     socket.broadcast.emit("new connection", {
       msg: "Novo usuario conectado",
@@ -14,12 +12,12 @@ export default function socketIO(server) {
 
     socket.emit("welcome", { msg: "Seja bem vindo!" });
 
-    socket.emit("messages", messages);
+    socket.emit("messages", JSON.parse(getRedis("all")));
 
     socket.on("new_message", (data: Object) => {
-      messages.push(data);
+      setRedis("all", JSON.stringify(data));
 
-      io.emit("messages", messages);
+      io.emit("messages", JSON.parse(getRedis("all")));
     });
   });
 }
