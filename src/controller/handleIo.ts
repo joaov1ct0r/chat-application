@@ -1,5 +1,7 @@
 import { Server } from "socket.io";
 
+import { getRedis, setRedis } from "../utils/redisConfig";
+
 export default function socketIO(server) {
   const io = new Server(server);
 
