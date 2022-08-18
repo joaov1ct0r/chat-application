@@ -10,4 +10,10 @@ const getRedis = (value: string) => {
   return syncRedisGet(value);
 };
 
-export { redisClient, getRedis };
+const setRedis = (key: string, value: string) => {
+  const syncRedisSet = promisify(redisClient.set).bind(redisClient);
+
+  return syncRedisSet(key, value);
+};
+
+export { redisClient, getRedis, setRedis };
