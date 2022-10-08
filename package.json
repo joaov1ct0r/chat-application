@@ -3,12 +3,12 @@
   "author": "github.com/joaov1ct0r",
   "version": "1.0.0",
   "description": "Sistema feito em arquitetura MVC de registro e login de usuarios com chat para conversas entre usuarios registrados, feito em NodeJS com TypeScript utilizando Express e armazenando dados no banco de dados MySQL utilizando o ORM Sequelize.",
-  "main": "index.ts",
+  "main": "./build/index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "start": "node ./build/index.js",
-    "dev": "ts-node-dev ./src/index.ts"
+    "build": "rimraf ./build && tsc",
+    "start": "npm pkg set type='commonjs'; node ./build/index.js",
+    "dev": "npm pkg set type='module'; ts-node-dev ./src/index.ts"
   },
   "keywords": [
     "chat",
@@ -17,7 +17,7 @@
     "mysql",
     "sequelize"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "bcryptjs": "^2.4.3",
@@ -53,6 +53,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.4"
   }
