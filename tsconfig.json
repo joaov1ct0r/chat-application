@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES6",
     "module": "CommonJS",
     "lib": [
       "es6"
@@ -8,18 +8,22 @@
     "allowJs": true,
     "outDir": "build",
     "rootDir": "src",
-    // "strict": true,
-    // "noImplicitAny": true,
+    "strict": true,
+    "noImplicitAny": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "noEmitOnError": true,
     "removeComments": true,
+    "sourceMap": true,
     "typeRoots": [
       "./node_modules/@types",
-      "src/interfaces"
+      "./src/interfaces"
     ]
   },
+  "exclude": [
+    "./node_modules",
+  ],
   "include": [
     "./src/**/*"
-, "config/database.js"  ]
+  ]
 }
