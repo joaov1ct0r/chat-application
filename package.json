@@ -8,7 +8,8 @@
   "scripts": {
     "build": "rimraf ./build && tsc",
     "start": "npm pkg set type='commonjs'; node ./build/index.js",
-    "dev": "npm pkg set type='module'; ts-node-dev ./src/index.ts"
+    "dev": "npm pkg set type='module'; ts-node-dev ./src/index.ts",
+    "typeorm": "typeorm-ts-node-esm"
   },
   "keywords": [
     "chat",
