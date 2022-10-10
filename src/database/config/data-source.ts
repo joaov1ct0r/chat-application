@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 
 import User from "../entity/userModel";
 
-export const AppDataSource = new DataSource({
+export const DB: DataSource = new DataSource({
   type: "postgres",
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
