@@ -6,7 +6,7 @@ import App from "./app";
 
 import socketIO from "./controller/handleIo";
 
-import { DB } from "./database/config/data-source";
+import DB from "./data-source";
 
 const server = new App().server.listen(process.env.SERVER_PORT, async () => {
   console.log("Server running");
