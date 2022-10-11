@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
 
-import User from "../entity/userModel";
+import User from "../entities/User";
 
 const DB: DataSource = new DataSource({
   type: "mysql",

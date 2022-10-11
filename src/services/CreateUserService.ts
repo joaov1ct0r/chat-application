@@ -1,4 +1,4 @@
-import User from "../database/entity/userModel";
+import User from "../database/entities/User";
 
 import IUser from "../interfaces/IUser";
 
