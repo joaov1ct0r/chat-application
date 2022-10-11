@@ -1,6 +1,6 @@
-import { Model } from "sequelize";
+import User from "../database/entities/User";
 
-export default interface IUser extends Model {
+export default interface IUser extends User {
   id: number;
   nome: string;
   email: string;

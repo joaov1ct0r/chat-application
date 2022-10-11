@@ -1,9 +1,9 @@
 import { DataSource } from "typeorm";
 
-import User from "../entity/userModel";
+import User from "../entities/User";
 
 const DB: DataSource = new DataSource({
-  type: "postgres",
+  type: "mysql",
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
   username: process.env.DB_USER,
@@ -16,7 +16,8 @@ const DB: DataSource = new DataSource({
   logging: true,
   entities: [User],
   subscribers: [],
-  migrations: ["../migration/**"],
+  migrations: ["../../migration/**"],
+  migrationsRun: true,
 });
 
 export default DB;
