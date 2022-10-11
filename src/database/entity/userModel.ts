@@ -1,6 +1,6 @@
 import { DataTypes, ModelStatic } from "sequelize";
 
-import DB from "../config/database";
+import DB from "../config/data-source";
 
 import IUser from "../../interfaces/IUser";
 
