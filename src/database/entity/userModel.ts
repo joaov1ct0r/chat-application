@@ -1,41 +1,34 @@
-import { DataTypes, ModelStatic } from "sequelize";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 
-import DB from "../config/data-source";
+@Entity("users")
+class User extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-import IUser from "../../interfaces/IUser";
+  @Column({
+    unique: true,
+    length: 100,
+    nullable: false,
+  })
+  email!: string;
 
-const User: ModelStatic<IUser> = DB.define(
-  "users",
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    email: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-    },
-    nome: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-    },
-    nascimento: {
-      type: DataTypes.STRING(10),
-      allowNull: false,
-    },
-    senha: {
-      type: DataTypes.STRING(250),
-      allowNull: false,
-    },
-  },
-  {
-    freezeTableName: true,
-    tableName: "users",
-    timestamps: false,
-  }
-);
+  @Column({
+    length: 100,
+    nullable: false,
+  })
+  nome!: string;
 
-User.sync();
+  @Column({
+    length: 10,
+    nullable: false,
+  })
+  nascimento!: string;
+
+  @Column({
+    length: 250,
+    nullable: false,
+  })
+  senha!: string;
+}
 
 export default User;
