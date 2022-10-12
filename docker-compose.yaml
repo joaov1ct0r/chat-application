@@ -1,0 +1,9 @@
+version: '3.4'
+services:
+  redis:
+    image: redis
+    restart: always
+    volumes:
+      - ./redisdata:/usr/src/app/redisdata
+    ports:
+      - 6379:6379
