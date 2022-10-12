@@ -7,3 +7,18 @@ services:
       - ./redisdata:/usr/src/app/redisdata
     ports:
       - 6379:6379
+
+  db:
+    image: mysql
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    volumes:
+      - ./mysqlData:/var/lib/mysql
+    ports:
+      - ${DB_PORT}:3306
