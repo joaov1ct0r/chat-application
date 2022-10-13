@@ -26,7 +26,7 @@ services:
 
   api_prod:
     container_name: api_prod
-    buid:
+    build:
       args:
         - NODE_ENV=production
       context: .
