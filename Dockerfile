@@ -23,3 +23,5 @@ COPY --from=development /usr/src/app/package*.json ./
 COPY --from=development /usr/src/app/build ./build
 
 RUN npm i --omit=dev
+
+CMD [ "npm", "run", "start" ]
