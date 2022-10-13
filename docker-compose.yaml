@@ -23,3 +23,27 @@ services:
       - ./mysqlData:/var/lib/mysql
     ports:
       - ${DB_PORT}:3306
+
+  api_prod:
+    container_name: api_prod
+    buid:
+      args:
+        - NODE_ENV=production
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: api_prod
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
