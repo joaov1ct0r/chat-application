@@ -28,4 +28,4 @@ COPY --from=development /usr/src/app/build ./build
 
 COPY --from=development /usr/src/app/src/scripts ./src/scripts
 
-RUN npm i --omit=dev
+RUN npm i -f --omit=dev
