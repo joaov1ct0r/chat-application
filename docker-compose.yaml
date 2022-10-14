@@ -24,7 +24,7 @@ services:
     ports:
       - ${DB_PORT}:3306
 
-  api_prod:
+  api_chat_prod:
     container_name: api_prod
     build:
       args:

@@ -16,7 +16,7 @@ RUN npm run build
 RUN npm i -g npm@latest
 
 # Stage 2 Production
-FROM node:16-alpine as production
+FROM node:14 as production
 
 WORKDIR /usr/src/app
 
@@ -28,4 +28,8 @@ COPY --from=development /usr/src/app/build ./build
 
 COPY --from=development /usr/src/app/src/scripts ./src/scripts
 
-RUN npm i -f --omit=dev
+RUN npm cache clean --force && npm cache verify
+
+RUN npm install -f --omit=dev
+
+RUN npm i -g npm@latest
