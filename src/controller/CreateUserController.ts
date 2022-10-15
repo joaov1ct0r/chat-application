@@ -5,7 +5,14 @@ import CreateUserService from "../services/CreateUserService";
 import { registerValidate } from "../validations/validateUserData";
 
 import ICreateUserService from "../interfaces/ICreateUserService";
+
+import DB from "../database/config/data-source";
+
 import IUser from "../interfaces/IUser";
+
+import { Repository } from "typeorm";
+
+import User from "../database/entities/User";
 
 export default class CreateUserController {
   public async handle(req: Request, res: Response): Promise<void | Response> {
@@ -23,7 +30,11 @@ export default class CreateUserController {
 
     const senha: string = req.body.senha;
 
-    const createUserService: ICreateUserService = new CreateUserService();
+    const repository: Repository<IUser> = DB.getRepository(User);
+
+    const createUserService: ICreateUserService = new CreateUserService(
+      repository
+    );
 
     try {
       // eslint-disable-next-line no-unused-vars

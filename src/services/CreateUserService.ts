@@ -23,8 +23,8 @@ export default class CreateUserService {
       email,
     });
 
-    if (user === null) {
-      throw new BadRequestError("Email ja cadastrado");
+    if (user !== null) {
+      throw new BadRequestError("User ja cadastrado");
     }
 
     const newUser: IUser = this.repository.create({
