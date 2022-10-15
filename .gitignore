@@ -20,11 +20,11 @@
 .env
 /pgdata
 ./mysqlData
-./redisData
+./redisdata
 /mysqlData
-/redisData
+/redisdata
 mysqlData/
-redisData/
+redisdata/
 
 npm-debug.log*
 yarn-debug.log*
