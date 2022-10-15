@@ -1,5 +1,3 @@
-import User from "../database/entities/User";
-
 import IUser from "../interfaces/IUser";
 
 import BadRequestError from "../errors/BadRequestError";
@@ -10,10 +8,18 @@ import bcrypt from "bcryptjs";
 
 import jwt from "jsonwebtoken";
 
+import { Repository } from "typeorm";
+
 export default class AuthenticateUserService {
+  private readonly repository: Repository<IUser>;
+
+  constructor(repository: Repository<IUser>) {
+    this.repository = repository;
+  }
+
   public async execute(email: string, senha: string): Promise<string> {
-    const user: IUser | null = await User.findOne({
-      where: { email },
+    const user: IUser | null = await this.repository.findOneBy({
+      email,
     });
 
     if (user === null) {
