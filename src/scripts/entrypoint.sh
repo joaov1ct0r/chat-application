@@ -2,4 +2,4 @@
 
 npm pkg set module='commonjs';
 
-npm run start
+npm run start;
