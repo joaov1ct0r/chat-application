@@ -18,13 +18,8 @@
 .env.test.local
 .env.production.local
 .env
-/pgdata
-./mysqlData
-./redisdata
 /mysqlData
 /redisdata
-mysqlData/
-redisdata/
 
 npm-debug.log*
 yarn-debug.log*
