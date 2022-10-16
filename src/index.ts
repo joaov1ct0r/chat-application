@@ -22,6 +22,8 @@ new App().server.listen(
 
         console.log("DB Connected");
 
+        socketIO();
+
         break;
       } catch (error: any) {
         console.log(error);
@@ -35,5 +37,3 @@ new App().server.listen(
     }
   }
 );
-
-socketIO();

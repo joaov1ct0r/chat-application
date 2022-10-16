@@ -5,9 +5,7 @@ import { getRedis, setRedis } from "../utils/redisConfig";
 import IDataIO from "../interfaces/IDataIO";
 
 export default function socketIO() {
-  const io = new Server();
-
-  io.listen(3000);
+  const io = new Server(3000);
 
   io.on("connection", async (socket) => {
     socket.broadcast.emit("new connection", {
