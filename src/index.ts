@@ -8,12 +8,10 @@ import socketIO from "./controller/handleIo";
 
 import DB from "./database/config/data-source";
 
-new App().server.listen(
+const server = new App().server.listen(
   Number(process.env.SERVER_PORT!),
   String(process.env.SERVER_HOST!),
   async () => {
-    console.log("Server running");
-
     let retries: number = 5;
 
     while (retries) {
@@ -22,7 +20,7 @@ new App().server.listen(
 
         console.log("DB Connected");
 
-        socketIO();
+        console.log("Server running");
 
         break;
       } catch (error: any) {
@@ -37,3 +35,5 @@ new App().server.listen(
     }
   }
 );
+
+socketIO(server);

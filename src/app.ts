@@ -12,16 +12,8 @@ import swaggerUi from "swagger-ui-express";
 
 import swaggerDocs from "./swagger.json";
 
-// import path, { dirname } from "path";
-
-// import { fileURLToPath } from "url";
-
 export default class App {
   public server: express.Application;
-
-  // private __dirname = dirname(
-  //   fileURLToPath(process.env.FILE_NAME_ENV as string)
-  // );
 
   constructor() {
     this.server = express();

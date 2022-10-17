@@ -1,6 +1,6 @@
 const ul = document.getElementsByTagName("ul")[0];
 
-const socket = io("http://0.0.0.0:3000");
+const socket = io("http://0.0.0.0:3001");
 
 document.addEventListener("DOMContentLoaded", () => {
   const submitButton = document.getElementById("submitButton");
