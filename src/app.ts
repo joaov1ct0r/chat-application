@@ -12,18 +12,16 @@ import swaggerUi from "swagger-ui-express";
 
 import swaggerDocs from "./swagger.json";
 
-import path from "path";
+// import path, { dirname } from "path";
 
-import { fileURLToPath } from "url";
+// import { fileURLToPath } from "url";
 
 export default class App {
   public server: express.Application;
 
-  private __filename: string = fileURLToPath(
-    process.env.FILE_NAME_ENV as string
-  );
-
-  private __dirname = path.dirname(this.__filename);
+  // private __dirname = dirname(
+  //   fileURLToPath(process.env.FILE_NAME_ENV as string)
+  // );
 
   constructor() {
     this.server = express();
@@ -43,26 +41,16 @@ export default class App {
     this.server.use(express.json());
 
     this.server.use(express.urlencoded({ extended: true }));
-
-    this.server.use(
-      "/",
-      express.static(path.join(this.__dirname, "/view", "/login"))
-    );
-
-    this.server.use(
-      "/register",
-      express.static(path.join(this.__dirname, "/view", "/registro"))
-    );
-
-    this.server.use(
-      "/chat",
-      auth,
-      express.static(path.join(this.__dirname, "/view", "/chat"))
-    );
   }
 
   private userRoutes() {
     this.server.use("/api/user", userRouter);
+
+    this.server.use("/", express.static("/view/login"));
+
+    this.server.use("/register", express.static("/view/registro"));
+
+    this.server.use("/chat", auth, express.static("/view/chat"));
   }
 
   private docsRoutes() {

@@ -3,8 +3,8 @@ import Redis from "ioredis";
 import { promisify } from "util";
 
 const redisClient = new Redis({
-  host: "redis",
-  port: 6379,
+  host: String(process.env.REDIS_HOST!),
+  port: Number(process.env.REDIS_PORT!),
 });
 
 const getRedis = (value: string) => {

@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Sistema feito em arquitetura MVC de registro e login de usuarios com chat para conversas entre usuarios registrados, feito em NodeJS com TypeScript utilizando Express e armazenando dados no banco de dados MySQL utilizando o ORM Sequelize.",
   "main": "./build/index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "build": "rimraf ./build && tsc",
     "start": "npm pkg set type='commonjs'; node ./build/index.js",
