@@ -34,6 +34,8 @@ services:
       target: production
     image: api_chat_prod
     entrypoint: ["/bin/sh", "./src/scripts/entrypoint.sh"]
+    volumes:
+      - ./src/views:/usr/src/app/build/views
     env_file:
       - .env
     environment:
