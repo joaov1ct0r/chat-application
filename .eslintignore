@@ -6,6 +6,6 @@
 /templates/**
 /tmp/**
 /tools/internal-rules/node_modules/**
-/src/view
+/src/views
 test.js
 !.eslintrc.js

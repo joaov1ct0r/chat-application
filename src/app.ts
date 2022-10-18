@@ -38,11 +38,27 @@ export default class App {
   private userRoutes() {
     this.server.use("/api/user", userRouter);
 
-    this.server.use("/", express.static("/view/login"));
+    this.server.use(
+      "/",
+      express.static(
+        "/home/joaovictor/Me/projetos/finishedProjects/node-chat-socket-mvc/src/views/login"
+      )
+    );
 
-    this.server.use("/register", express.static("/view/registro"));
+    this.server.use(
+      "/register",
+      express.static(
+        "/home/joaovictor/Me/projetos/finishedProjects/node-chat-socket-mvc/src/views/registro"
+      )
+    );
 
-    this.server.use("/chat", auth, express.static("/view/chat"));
+    this.server.use(
+      "/chat",
+      auth,
+      express.static(
+        "/home/joaovictor/Me/projetos/finishedProjects/node-chat-socket-mvc/src/views/chat"
+      )
+    );
   }
 
   private docsRoutes() {
