@@ -38,11 +38,11 @@ export default class App {
   private userRoutes() {
     this.server.use("/api/user", userRouter);
 
-    this.server.use("/", express.static("./views/login"));
+    this.server.use("/", express.static("build/views/login"));
 
-    this.server.use("/register", express.static("./views/registro"));
+    this.server.use("/register", express.static("build/views/registro"));
 
-    this.server.use("/chat", auth, express.static("./views/chat"));
+    this.server.use("/chat", auth, express.static("build/views/chat"));
   }
 
   private docsRoutes() {
