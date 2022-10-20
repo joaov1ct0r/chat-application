@@ -45,7 +45,7 @@ export default class CreateUserController {
         senha
       );
 
-      return res.redirect("/");
+      return res.redirect(201, "/");
     } catch (err: any) {
       return res.status(err.statusCode).json({ error: err.message });
     }
