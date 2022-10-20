@@ -5,7 +5,7 @@ submitButton.addEventListener('click', async () => {
 
   let email = document.getElementById('email').value;
 
-  let nome = document.getElementById('nome').value;
+  let name = document.getElementById('nome').value;
 
   let nascimento = document.getElementById('data').value;
 
@@ -16,7 +16,7 @@ submitButton.addEventListener('click', async () => {
     headers: {
       'Content-type': 'application/json; charset=UTF-8'
     },
-    body: JSON.stringify({ email, nome, nascimento, senha })
+    body: JSON.stringify({ email, name, nascimento, senha })
   };
 
   const response = await fetch(url, options);
