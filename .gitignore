@@ -20,6 +20,8 @@
 .env
 /mysqlData
 /redisdata
+/mysqlDataDev
+/redisdataDev
 
 npm-debug.log*
 yarn-debug.log*

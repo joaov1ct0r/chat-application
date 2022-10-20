@@ -5,7 +5,7 @@ services:
     image: redis
     restart: always
     volumes:
-      - ./redisdata:/usr/src/app/redisdata
+      - ./redisdataDev:/usr/src/app/redisdata
     ports:
       - 6379:6379
 
@@ -15,12 +15,13 @@ services:
     env_file:
       - .env
     environment:
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - NODE_ENV=development
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
       - MYSQL_DATABASE=${DB_DATABASE_TEST}
     volumes:
-      - ./mysqlData:/var/lib/mysql
+      - ./mysqlDataDev:/var/lib/mysql
     ports:
       - ${DB_PORT}:3306
 
@@ -28,7 +29,7 @@ services:
     container_name: api_chat_dev
     build:
       args:
-        - NODE_ENV=production
+        - NODE_ENV=development
       context: .
       dockerfile: Dockerfile
       target: development
