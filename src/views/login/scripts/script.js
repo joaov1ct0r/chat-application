@@ -1,25 +1,25 @@
 let submitButton = document.getElementById('submitButton');
 
 submitButton.addEventListener('click', async () => {
-    let email = document.getElementById('email').value;
+  let email = document.getElementById('email').value;
 
-    let senha = document.getElementById('senha').value;
+  let senha = document.getElementById('senha').value;
 
-    let url = 'http://localhost:3000/api/login';
+  let url = 'http://localhost:3000/api/user/login';
 
-    let options = {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-        },
-        body: JSON.stringify({ email, senha })
-    };
+  let options = {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    },
+    body: JSON.stringify({ email, senha })
+  };
 
-    const response = await fetch(url, options);
+  const response = await fetch(url, options);
 
-    if (response.status === 200) {
-        alert('Login realizado com sucesso!');
+  if (response.status === 200) {
+    alert('Login realizado com sucesso!');
 
-        window.location.href = response.url;
-    } else alert('Falha na autenticação');
+    window.location.href = response.url;
+  } else alert('Falha na autenticação');
 });

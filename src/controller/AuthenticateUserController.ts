@@ -36,7 +36,7 @@ export default class AuthenticateUserController {
 
       res.cookie("authorization", `Bearer ${token}`, { httpOnly: true });
 
-      return res.redirect("/chat");
+      return res.redirect(200, "/chat");
     } catch (err: any) {
       return res.status(err.message).json({ error: err.message });
     }
