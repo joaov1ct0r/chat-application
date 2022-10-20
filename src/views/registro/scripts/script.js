@@ -21,9 +21,7 @@ submitButton.addEventListener('click', async () => {
 
   const response = await fetch(url, options);
 
-  if (response.status === 201) {
-    alert('Cadastro realizado com sucesso!');
+  if (response.status === 201) alert('Cadastro realizado com sucesso!');
 
-    window.location.href = response.url;
-  } else alert('Falha no cadastro!');
+  else alert('Falha no cadastro!');
 });
