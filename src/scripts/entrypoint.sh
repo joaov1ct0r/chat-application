@@ -1,5 +1,5 @@
 #!/bin/sh
 
-npm pkg set module='commonjs';
+npm pkg set type='commonjs';
 
 npm run start;
