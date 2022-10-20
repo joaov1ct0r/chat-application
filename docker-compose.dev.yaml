@@ -1,0 +1,51 @@
+version: '3.4'
+
+services:
+  redis:
+    image: redis
+    restart: always
+    volumes:
+      - ./redisdata:/usr/src/app/redisdata
+    ports:
+      - 6379:6379
+
+  db:
+    image: mysql
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE_TEST}
+    volumes:
+      - ./mysqlData:/var/lib/mysql
+    ports:
+      - ${DB_PORT}:3306
+
+  api_chat_dev:
+    container_name: api_chat_dev
+    build:
+      args:
+        - NODE_ENV=production
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    image: api_chat_dev
+    entrypoint: ["/bin/sh", "./src/scripts/entrypoint_dev.sh"]
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+    restart: always
+    depends_on:
+      - db
+      - redis
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
