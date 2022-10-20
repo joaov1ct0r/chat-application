@@ -38,11 +38,27 @@ export default class App {
   private userRoutes() {
     this.server.use("/api/user", userRouter);
 
-    this.server.use("/", express.static("views/login"));
+    this.server.use(
+      "/",
+      process.env.NODE_ENV === "production"
+        ? express.static("build/views/login")
+        : express.static("src/views/login")
+    );
 
-    this.server.use("/register", express.static("views/registro"));
+    this.server.use(
+      "/register",
+      process.env.NODE_ENV === "production"
+        ? express.static("build/views/registro")
+        : express.static("src/views/registro")
+    );
 
-    this.server.use("/chat", auth, express.static("views/chat"));
+    this.server.use(
+      "/chat",
+      auth,
+      process.env.NODE_ENV === "production"
+        ? express.static("build/views/chat")
+        : express.static("src/views/chat")
+    );
   }
 
   private docsRoutes() {
