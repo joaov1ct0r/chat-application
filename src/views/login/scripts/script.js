@@ -20,6 +20,6 @@ submitButton.addEventListener('click', async () => {
   if (response.status === 200) {
     alert('Login realizado com sucesso!');
 
-    window.location.href = response.url;
+    window.location.href = "http://localhost:3000/chat";
   } else alert('Falha na autenticação');
 });
