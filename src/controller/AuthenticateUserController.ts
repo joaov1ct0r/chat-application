@@ -34,7 +34,10 @@ export default class AuthenticateUserController {
     try {
       const token: string = await authenticateUserService.execute(email, senha);
 
-      res.cookie("authorization", `Bearer ${token}`, { httpOnly: true });
+      res.cookie("authorization", `Bearer ${token}`, {
+        httpOnly: true,
+        path: "/chat",
+      });
 
       return res.redirect(200, "/chat");
     } catch (err: any) {
