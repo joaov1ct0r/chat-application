@@ -5,7 +5,13 @@ import { getRedis, setRedis } from "../utils/redisConfig";
 import IDataIO from "../interfaces/IDataIO";
 
 export default function socketIO(server: any) {
-  const io = new Server(server);
+  const io = new Server(server, {
+    cors: {
+      origin: "*",
+      credentials: true,
+      methods: ["GET", "POST"],
+    },
+  });
 
   io.listen(3001);
 
