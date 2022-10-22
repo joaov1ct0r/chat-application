@@ -12,8 +12,16 @@ import swaggerUi from "swagger-ui-express";
 
 import swaggerDocs from "./swagger.json";
 
+import ICors from "./interfaces/ICors";
+
 export default class App {
   public server: express.Application;
+
+  private readonly corsOptions: ICors = {
+    credentials: true,
+
+    origin: ["http://localhost:3001", "http://localhost:3000"],
+  };
 
   constructor() {
     this.server = express();
@@ -26,7 +34,7 @@ export default class App {
   }
 
   private middlewares() {
-    this.server.use(cors());
+    this.server.use(cors(this.corsOptions));
 
     this.server.use(cookieParser());
 
