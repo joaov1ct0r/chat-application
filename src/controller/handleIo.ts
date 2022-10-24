@@ -22,22 +22,16 @@ export default function socketIO(server: any) {
 
     socket.emit("welcome", { msg: "Seja bem vindo!" });
 
-    // socket.emit("messages", JSON.parse(String(getRedis("all"))));
+    const allMessages: string | null | undefined = await getRedis("all");
 
-    const allMessages: string = (await getRedis("all")) as unknown as string;
-
-    socket.emit("messages", JSON.parse(allMessages));
+    socket.emit("messages", JSON.parse(allMessages as string));
 
     socket.on("new_message", async (data: IDataIO) => {
-      setRedis("all", JSON.stringify(data));
+      await setRedis("all", JSON.stringify(data));
 
-      setRedis(`${data.user}`, data.msg);
+      const allMessages: string | null | undefined = await getRedis("all");
 
-      // io.emit("messages", JSON.parse(String(getRedis("all"))));
-
-      const allMessages: string = (await getRedis("all")) as unknown as string;
-
-      io.emit("messages", JSON.parse(allMessages));
+      io.emit("messages", JSON.parse(allMessages as string));
     });
   });
 }

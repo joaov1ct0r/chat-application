@@ -41,7 +41,7 @@ function sendNewMessage() {
 
   const message = document.getElementById("text").value;
 
-  socket.emit("new_message", { user, msg: message });
+  socket.emit("new_message", [{ user, msg: message }]);
 
   document.getElementById("text").value = "";
 }
