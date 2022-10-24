@@ -1,10 +1,10 @@
-type IUserData = {
-  user: string;
-  msg: string;
-};
-
 type IDataIO = {
-  data: IUserData[];
+  data: [
+    {
+      user: string;
+      msg: string;
+    }
+  ];
 };
 
 export default IDataIO;

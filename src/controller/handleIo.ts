@@ -1,6 +1,6 @@
 import { Server } from "socket.io";
 
-import { getRedis, setRedis } from "../utils/redisConfig";
+import redisClient from "../utils/redisConfig";
 
 import IDataIO from "../interfaces/IDataIO";
 
@@ -22,16 +22,20 @@ export default function socketIO(server: any) {
 
     socket.emit("welcome", { msg: "Seja bem vindo!" });
 
-    const allMessages: string | null | undefined = await getRedis("all");
+    const allMessages: string[] = await redisClient.lrange("all", 0, -1);
 
-    socket.emit("messages", JSON.parse(allMessages as string));
+    allMessages.forEach((msg) => {
+      socket.emit("messages", JSON.parse(msg));
+    });
 
     socket.on("new_message", async (data: IDataIO) => {
-      await setRedis("all", JSON.stringify(data));
+      await redisClient.rpush("all", JSON.stringify(data));
 
-      const allMessages: string | null | undefined = await getRedis("all");
+      const allMessages: string[] = await redisClient.lrange("all", 0, -1);
 
-      io.emit("messages", JSON.parse(allMessages as string));
+      allMessages.forEach((msg) => {
+        socket.emit("messages", JSON.parse(msg));
+      });
     });
   });
 }
