@@ -24,18 +24,14 @@ export default function socketIO(server: any) {
 
     const allMessages: string[] = await redisClient.lrange("all", 0, -1);
 
-    allMessages.forEach((msg) => {
-      socket.emit("messages", JSON.parse(msg));
-    });
+    socket.emit("messages", allMessages);
 
     socket.on("new_message", async (data: IDataIO) => {
-      await redisClient.rpush("all", JSON.stringify(data));
+      await redisClient.rpush("all", `${data.user}:${data.msg}`);
 
       const allMessages: string[] = await redisClient.lrange("all", 0, -1);
 
-      allMessages.forEach((msg) => {
-        socket.emit("messages", JSON.parse(msg));
-      });
+      socket.emit("messages", allMessages);
     });
   });
 }

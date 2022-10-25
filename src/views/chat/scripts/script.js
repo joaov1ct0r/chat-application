@@ -41,7 +41,7 @@ function sendNewMessage() {
 
   const message = document.getElementById("text").value;
 
-  socket.emit("new_message", [{ user, msg: message }]);
+  socket.emit("new_message", { user, msg: message });
 
   document.getElementById("text").value = "";
 }
@@ -53,8 +53,8 @@ socket.on("messages", (data) => {
 function handleMessages(data) {
   let listMessages = [];
 
-  data.forEach((obj) => {
-    listMessages += `<li>${obj.user}: ${obj.msg}</li>`;
+  data.forEach((msg) => {
+    listMessages += `<li>${msg}</li>`;
   });
 
   ul.innerHTML = listMessages;
