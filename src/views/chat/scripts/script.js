@@ -27,15 +27,15 @@ function sendNewMessage() {
 }
 
 socket.on("new connection", ({ from, message }) => {
-  listMessages += `<li>${from}:${message}</li>`;
+  listMessages += `<li>${from}: ${message}</li>`;
 });
 
 socket.on("welcome", ({ from, message }) => {
-  listMessages += `<li>${from}:${message}</li>`;
+  listMessages += `<li>${from}: ${message}</li>`;
 });
 
 socket.on("messages", ({ from, message }) => {
-  listMessages += `<li>${from}:${message}</li>`;
+  listMessages += `<li>${from}: ${message}</li>`;
 });
 
 function handleMessages() {
