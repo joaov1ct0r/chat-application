@@ -5,7 +5,7 @@ services:
     image: redis
     restart: always
     volumes:
-      - ./redisdataDev:/usr/src/app/redisdata
+      - ./redisdataDev:/data
     ports:
       - 6379:6379
 
