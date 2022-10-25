@@ -22,14 +22,40 @@ export default function socketIO(server: any) {
 
     socket.emit("welcome", { msg: "Seja bem vindo!" });
 
-    const allMessages: string[] = await redisClient.lrange("all", 0, -1);
+    redisClient.on("error", (err) => {
+      throw new Error(err);
+    });
+
+    const allMessages: string[] = [];
+
+    redisClient.lrange("messages", "0", "-1", (err, data) => {
+      if (err) throw new Error(`Error: ${err}`);
+
+      data!.forEach((element) => {
+        allMessages.push(element);
+      });
+    });
+
+    console.log(allMessages);
 
     socket.emit("messages", allMessages);
 
     socket.on("new_message", async (data: IDataIO) => {
-      await redisClient.rpush("all", `${data.user}:${data.msg}`);
+      await redisClient.rpush("messages", `${data.user}:${data.msg}`, (err) => {
+        if (err) throw new Error(`Error: ${err}`);
+      });
 
-      const allMessages: string[] = await redisClient.lrange("all", 0, -1);
+      const allMessages: string[] = [];
+
+      redisClient.lrange("messages", "0", "-1", (err, data) => {
+        if (err) throw new Error(`Error: ${err}`);
+
+        data!.forEach((element) => {
+          allMessages.push(element);
+        });
+      });
+
+      console.log(allMessages);
 
       socket.emit("messages", allMessages);
     });
