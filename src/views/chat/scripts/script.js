@@ -1,6 +1,6 @@
-const ul = document.getElementsByTagName("ul")[0];
-
 const socket = io("http://0.0.0.0:3001");
+
+const listMessages = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   const submitButton = document.getElementById("submitButton");
@@ -9,26 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     sendNewMessage();
   });
 });
-
-socket.on("new connection", (data) => {
-  handleNewConnection(data);
-});
-
-function handleNewConnection({ msg }) {
-  const newMessage = `<li>Server: ${msg}</li>`;
-
-  ul.innerHTML += newMessage;
-}
-
-socket.on("welcome", (data) => {
-  handleOwnConnection(data);
-});
-
-function handleOwnConnection({ msg }) {
-  const newMessage = `<li>Server: ${msg}</li>`;
-
-  ul.innerHTML += newMessage;
-}
 
 function sendNewMessage() {
   const user = document.getElementById("userInput").value;
@@ -41,21 +21,29 @@ function sendNewMessage() {
 
   const message = document.getElementById("text").value;
 
-  socket.emit("new_message", { user, msg: message });
+  socket.emit("new_message", { from: user, message });
 
   document.getElementById("text").value = "";
 }
 
-socket.on("messages", (data) => {
-  handleMessages(data);
+socket.on("new connection", ({ from, message }) => {
+  listMessages += `<li>${from}:${message}</li>`;
 });
 
-function handleMessages(data) {
-  let listMessages = [];
+socket.on("welcome", ({ from, message }) => {
+  listMessages += `<li>${from}:${message}</li>`;
+});
 
-  data.forEach((msg) => {
-    listMessages += `<li>${msg}</li>`;
-  });
+socket.on("messages", ({ from, message }) => {
+  listMessages += `<li>${from}:${message}</li>`;
+});
 
-  ul.innerHTML = listMessages;
+function handleMessages() {
+  const ul = document.getElementsByTagName("ul")[0];
+
+  ul.innerHTML = listMessages
 }
+
+setTimeout(() => {
+  handleMessages();
+}, 5000)

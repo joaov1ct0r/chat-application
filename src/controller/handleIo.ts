@@ -2,7 +2,24 @@ import { Server } from "socket.io";
 
 import redisClient from "../utils/redisConfig";
 
-import IDataIO from "../interfaces/IDataIO";
+function sendMessage(socket: any) {
+  redisClient.lrange("messages", "0", "-1", (err, data) => {
+    if (err) throw new Error(`Error: ${err}`);
+
+    data!.forEach((element) => {
+      const redisString: string[] = element.split(":");
+
+      const redisName: string = redisString[0];
+
+      const redisMessage: string = redisString[1];
+
+      socket.emit("messages", {
+        from: redisName,
+        message: redisMessage,
+      });
+    });
+  });
+}
 
 export default function socketIO(server: any) {
   const io = new Server(server, {
@@ -17,47 +34,20 @@ export default function socketIO(server: any) {
 
   io.on("connection", async (socket) => {
     socket.broadcast.emit("new connection", {
-      msg: "Novo usuario conectado",
+      from: "Server",
+      message: "Novo usuario conectado!",
     });
 
-    socket.emit("welcome", { msg: "Seja bem vindo!" });
+    socket.emit("welcome", { from: "Server", message: "Bem Vindo!" });
 
-    redisClient.on("error", (err) => {
-      throw new Error(err);
-    });
+    sendMessage(socket);
 
-    const allMessages: string[] = [];
-
-    redisClient.lrange("messages", "0", "-1", (err, data) => {
-      if (err) throw new Error(`Error: ${err}`);
-
-      data!.forEach((element) => {
-        allMessages.push(element);
-      });
-    });
-
-    console.log(allMessages);
-
-    socket.emit("messages", allMessages);
-
-    socket.on("new_message", async (data: IDataIO) => {
-      await redisClient.rpush("messages", `${data.user}:${data.msg}`, (err) => {
+    socket.on("new_message", async ({ user, msg }) => {
+      redisClient.rpush("messages", `${user}:${msg}`, (err) => {
         if (err) throw new Error(`Error: ${err}`);
       });
 
-      const allMessages: string[] = [];
-
-      redisClient.lrange("messages", "0", "-1", (err, data) => {
-        if (err) throw new Error(`Error: ${err}`);
-
-        data!.forEach((element) => {
-          allMessages.push(element);
-        });
-      });
-
-      console.log(allMessages);
-
-      socket.emit("messages", allMessages);
+      io.emit("messages", { from: user, message: msg });
     });
   });
 }
