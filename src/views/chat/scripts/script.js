@@ -1,6 +1,6 @@
 const socket = io("http://0.0.0.0:3001");
 
-const listMessages = [];
+var listMessages = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   const submitButton = document.getElementById("submitButton");
@@ -44,6 +44,6 @@ function handleMessages() {
   ul.innerHTML = listMessages
 }
 
-setTimeout(() => {
+setInterval(() => {
   handleMessages();
-}, 5000)
+}, 1000)
