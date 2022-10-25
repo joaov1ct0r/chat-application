@@ -42,12 +42,12 @@ export default function socketIO(server: any) {
 
     sendMessage(socket);
 
-    socket.on("new_message", async ({ user, msg }) => {
-      redisClient.rpush("messages", `${user}:${msg}`, (err) => {
+    socket.on("new_message", async ({ from, message }) => {
+      redisClient.rpush("messages", `${from}:${message}`, (err) => {
         if (err) throw new Error(`Error: ${err}`);
       });
 
-      io.emit("messages", { from: user, message: msg });
+      io.emit("messages", { from, message });
     });
   });
 }
