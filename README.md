@@ -9,24 +9,9 @@
   <br>
   <li>NPM</li>
   <br>
-  <li>Express</li>
+  <li>Docker</li>
   <br>
-  <li>Sequelize</li>
-  <br>
-  <li>MySQL</li>
-  <br>
-  <li>bcrypt</li>
-  <br>
-  <li>dotenv</li>
-  <br>
-  <li>JWT</li>
-  <br>
-  <li>@Hapi/Joi</li>
-  <br>
-  <li>cookie-parser</li>
-  <br>
-  <li>Socket.IO</li>
-  <br>
+  <li>Docker-Compose</li>
 </ul>
 
 <h2>Sobre</h2>
