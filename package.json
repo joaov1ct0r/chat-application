@@ -9,7 +9,8 @@
     "build": "rimraf ./build && tsc",
     "start": "npm pkg set type='commonjs'; node ./build/index.js",
     "dev": "npm pkg set type='module'; ts-node-dev --transpile-only ./src/index.ts",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "test": "jest"
   },
   "keywords": [
     "chat",
