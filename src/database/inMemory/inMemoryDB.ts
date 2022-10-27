@@ -2,6 +2,8 @@ import IUser from "../../interfaces/IUser";
 
 import bcrypt from "bcryptjs";
 
+import { v4 as uuid } from "uuid";
+
 export default class InMemoryDB {
   private readonly users: IUser[] = [];
   public findOneBy(email: string): IUser | null {
@@ -20,10 +22,19 @@ export default class InMemoryDB {
     if (user !== null) return;
 
     this.users.push({
+      id: Number(uuid()),
       nome,
       email,
       nascimento,
       senha: bcrypt.hashSync(senha),
     } as IUser);
+
+    this.save();
+
+    return this.users.find((user) => user.email === email);
+  }
+
+  public save(): void {
+    console.log("!");
   }
 }
