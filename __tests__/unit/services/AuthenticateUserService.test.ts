@@ -9,6 +9,7 @@ import IAuthenticateUserService from "../../../src/interfaces/IAuthenticateUserS
 import { Repository } from "typeorm";
 
 import BadRequestError from "../../../src/errors/BadRequestError";
+import UnathorizedError from "../../../src/errors/UnathorizedError";
 
 const makeSut = () => {
   const mockRepository = mock<Repository<IUser>>();
@@ -30,6 +31,19 @@ describe("authenticate user service", () => {
       expect(async () => {
         await sut.execute("user1234@mail.com.br", "123412341234");
       }).rejects.toThrow(new BadRequestError("Usuario não encontrado!"));
+    });
+
+    it("should throw an error if password is incorrect", async () => {
+      const { sut, mockRepository } = makeSut();
+
+      mockRepository.findOneBy.mockResolvedValueOnce({
+        id: 1,
+        senha: "123123123",
+      } as IUser);
+
+      expect(async () => {
+        await sut.execute("user1234@mail.com.br", "789789789");
+      }).rejects.toThrow(new UnathorizedError("Falha na autenticação!"));
     });
   });
 });
