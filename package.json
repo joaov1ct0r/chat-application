@@ -4,16 +4,16 @@
   "version": "1.0.0",
   "description": "Sistema feito em arquitetura MVC de registro e login de usuarios com chat para conversas entre usuarios registrados, feito em NodeJS com TypeScript utilizando Express e armazenando dados no banco de dados MySQL utilizando o ORM Sequelize.",
   "main": "./build/index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "build": "rimraf ./build && tsc",
     "start": "npm pkg set type='commonjs'; node ./build/index.js",
     "dev": "npm pkg set type='module'; ts-node-dev --transpile-only ./src/index.ts",
-    "typeorm": "typeorm-ts-node-commonjs",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch",
-    "test:verbose": "jest --verbose"
+    "pretest": "NODE_ENV='test'; npx typeorm-ts-node-esm -d ./src/database/config/data-source.ts migration:run",
+    "test": "NODE_ENV='test'; jest",
+    "test:coverage": "NODE_ENV='test'; jest --coverage",
+    "test:watch": "NODE_ENV='test'; jest --watch",
+    "test:verbose": "NODE_ENV='test'; jest --verbose"
   },
   "keywords": [
     "chat",
@@ -39,6 +39,7 @@
     "typeorm": "^0.3.10"
   },
   "devDependencies": {
+    "@tsconfig/node16": "^1.0.3",
     "@types/bcryptjs": "^2.4.2",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.12",
