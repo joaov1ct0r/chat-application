@@ -36,5 +36,36 @@ describe("create user service", () => {
         );
       }).rejects.toThrow(new BadRequestError("User ja cadastrado"));
     });
+
+    it("should create a new user", async () => {
+      const { sut, mockRepository } = makeSut();
+
+      mockRepository.findOneBy.mockResolvedValueOnce(null);
+
+      mockRepository.create.mockReturnValueOnce({
+        id: 1,
+        nome: "user nome",
+        email: "user1234@mail.com.br",
+        senha: "54385092-394-29-2",
+        nascimento: "00/00/0000",
+      } as IUser);
+
+      mockRepository.save.mockResolvedValueOnce({
+        id: 1,
+        nome: "user nome",
+        email: "user1234@mail.com.br",
+        senha: "54385092-394-29-2",
+        nascimento: "00/00/0000",
+      } as IUser);
+
+      const result = await sut.execute(
+        "user1234@mail.com.br",
+        "user nome",
+        "54385092-394-29-2",
+        "00/00/0000"
+      );
+
+      expect(result).toHaveProperty("id");
+    });
   });
 });
