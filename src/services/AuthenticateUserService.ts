@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import IUser from "../interfaces/IUser";
 
 import BadRequestError from "../errors/BadRequestError";
