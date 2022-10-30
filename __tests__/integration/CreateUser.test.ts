@@ -6,11 +6,15 @@ import DB from "../../src/database/config/data-source";
 
 describe("create user", () => {
   beforeEach(async () => {
+    await DB.initialize();
+
     await DB.runMigrations();
   });
 
   afterEach(async () => {
-    await DB.query("TRUNCATE TABLE User");
+    await DB.query("TRUNCATE TABLE users");
+
+    await DB.destroy();
   });
 
   it("should return an error if wrong data is send", async () => {
