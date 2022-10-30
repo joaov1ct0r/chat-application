@@ -1,4 +1,5 @@
 {
+  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
     "target": "ES6",
     "module": "CommonJS",
@@ -25,7 +26,11 @@
   "exclude": [
     "./node_modules",
   ],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+  },
   "include": [
-    "./src/**/*"
+    "./src/**/*.ts"
   ]
 }

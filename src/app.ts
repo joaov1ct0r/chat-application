@@ -25,7 +25,7 @@ export default class App {
     this.docsRoutes();
   }
 
-  private middlewares() {
+  private async middlewares() {
     this.server.use(
       cors({
         origin: "*",

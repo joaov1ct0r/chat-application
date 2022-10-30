@@ -9,8 +9,9 @@
     "build": "rimraf ./build && tsc",
     "start": "npm pkg set type='commonjs'; node ./build/index.js",
     "dev": "npm pkg set type='module'; ts-node-dev --transpile-only ./src/index.ts",
-    "pretest": "NODE_ENV='test'; npx typeorm-ts-node-esm -d ./src/database/config/data-source.ts migration:run",
-    "test": "NODE_ENV='test'; jest",
+    "pretest": "NODE_ENV='test'; npm pkg set type='commonjs'; npx typeorm-ts-node-commonjs -d ./src/database/config/data-source.ts migration:run",
+    "test": "NODE_ENV='test'; npm pkg set type='module'; jest",
+    "posttest": "NODE_ENV='test'; npm pkg set type='commonjs'; npx typeorm-ts-node-commonjs -d ./src/database/config/data-source.ts migration:revert",
     "test:coverage": "NODE_ENV='test'; jest --coverage",
     "test:watch": "NODE_ENV='test'; jest --watch",
     "test:verbose": "NODE_ENV='test'; jest --verbose"
