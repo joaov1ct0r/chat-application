@@ -39,9 +39,12 @@ export default class AuthenticateUserController {
         path: "/chat",
       });
 
-      return res.redirect(200, "/chat");
+      return res.json({ message: "Login realizado com sucesso!", status: 200 });
     } catch (err: any) {
-      return res.status(err.message).json({ error: err.message });
+      return res.json({
+        message: err.message,
+        status: err.statusCode,
+      });
     }
   }
 }

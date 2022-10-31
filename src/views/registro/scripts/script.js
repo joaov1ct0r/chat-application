@@ -19,9 +19,11 @@ submitButton.addEventListener('click', async () => {
     body: JSON.stringify({ email, name, nascimento, senha })
   };
 
-  const response = await fetch(url, options);
+  const request = await fetch(url, options);
 
-  if (response.status === 201) alert('Cadastro realizado com sucesso!');
+  const response = await request.json();
 
-  else alert('Falha no cadastro!');
+  if (response.status === 201) {
+    alert(response.message)
+  } else alert('Falha no cadastro!');
 });

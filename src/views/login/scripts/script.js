@@ -15,10 +15,12 @@ submitButton.addEventListener('click', async () => {
     body: JSON.stringify({ email, senha })
   };
 
-  const response = await fetch(url, options);
+  const request = await fetch(url, options);
+
+  const response = await request.json();
 
   if (response.status === 200) {
-    alert('Login realizado com sucesso!');
+    alert(response.message);
 
     window.location.href = "http://localhost:3000/chat";
   } else alert('Falha na autenticação');

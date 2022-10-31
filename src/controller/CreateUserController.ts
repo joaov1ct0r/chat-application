@@ -45,9 +45,12 @@ export default class CreateUserController {
         senha
       );
 
-      return res.redirect(201, "/");
+      return res.json({ message: "Usuario cadastrado!", status: 201 });
     } catch (err: any) {
-      return res.status(err.statusCode).json({ error: err.message });
+      return res.json({
+        message: err.message,
+        status: err.statusCode,
+      });
     }
   }
 }

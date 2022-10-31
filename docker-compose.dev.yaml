@@ -35,6 +35,8 @@ services:
       target: development
     image: api_chat_dev
     entrypoint: ["/bin/sh", "./src/scripts/entrypoint_dev.sh"]
+    volumes:
+      - ./src:/usr/src/app/src
     env_file:
       - .env
     environment:

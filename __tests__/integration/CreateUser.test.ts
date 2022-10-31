@@ -20,7 +20,6 @@ describe("create user", () => {
   it("should return an error if wrong data is send", async () => {
     const response = await request(new App().server)
       .post("/api/user/register")
-      .set("Accept", "applicatin/json")
       .send({
         email: "@mail.com",
       });
@@ -29,24 +28,20 @@ describe("create user", () => {
   });
 
   it("should return an error if user already exists", async () => {
-    await request(new App().server)
-      .post("/api/user/register")
-      .set("Accept", "application/json")
-      .send({
-        email: "user1234@mail.com.br",
-        name: "user name",
-        nascimento: "00/00/0000",
-        senha: "user123456",
-      });
+    await request(new App().server).post("/api/user/register").send({
+      email: "user1fdasfdaf234@mail.com.br",
+      name: "user name fadlskjflak",
+      nascimento: "01/09/2001",
+      senha: "userfdaksjfalkdj123456",
+    });
 
     const response = await request(new App().server)
       .post("/api/user/register")
-      .set("Accept", "application/json")
       .send({
-        email: "user1234@mail.com.br",
-        name: "user name",
-        nascimento: "00/00/0000",
-        senha: "user123456",
+        email: "user1fdasfdaf234@mail.com.br",
+        name: "user name fadlskjflak",
+        nascimento: "01/09/2001",
+        senha: "userfdaksjfalkdj123456",
       });
 
     expect(response.status).toEqual(400);
@@ -55,14 +50,13 @@ describe("create user", () => {
   it("should create a new user", async () => {
     const response = await request(new App().server)
       .post("/api/user/register")
-      .set("Accept", "application/json")
       .send({
-        email: "user123456@mail.com.br",
-        name: "user name middlename",
+        email: "adlksfjalkds@mail.com.br",
+        name: "user dlakjflskajdfl dlename",
         nascimento: "01/09/2001",
-        senha: "usuario123456789",
+        senha: "dflksaj4038204jfldsk",
       });
 
-    expect(response.status).toEqual(201);
+    expect(response.status).toEqual(200);
   });
 });
