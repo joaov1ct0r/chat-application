@@ -4,7 +4,11 @@ import request from "supertest";
 
 import DB from "../../src/database/config/data-source";
 
+import { jest } from "@jest/globals";
+
 describe("create user", () => {
+  jest.setTimeout(200000);
+
   beforeEach(async () => {
     await DB.initialize();
 
@@ -50,5 +54,21 @@ describe("create user", () => {
       });
 
     expect(response.status).toEqual(400);
+  });
+
+  it("should create a new user", async () => {
+    const response = await request(new App().server)
+      .post("/api/user/register")
+      .set("Accept", "application/json")
+      .send({
+        email: "user123456@mail.com.br",
+        name: "user name middlename",
+        nascimento: "01/09/2001",
+        senha: "usuario123456789",
+      });
+
+    expect(response.status).toEqual(201);
+
+    console.log(response.error);
   });
 });
