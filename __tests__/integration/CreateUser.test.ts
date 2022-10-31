@@ -44,7 +44,7 @@ describe("create user", () => {
         senha: "userfdaksjfalkdj123456",
       });
 
-    expect(response.status).toEqual(400);
+    expect(response.body.status).toEqual(400);
   });
 
   it("should create a new user", async () => {
@@ -57,6 +57,6 @@ describe("create user", () => {
         senha: "dflksaj4038204jfldsk",
       });
 
-    expect(response.status).toEqual(200);
+    expect(response.body.status).toEqual(201);
   });
 });
