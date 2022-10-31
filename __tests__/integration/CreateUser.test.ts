@@ -68,7 +68,5 @@ describe("create user", () => {
       });
 
     expect(response.status).toEqual(201);
-
-    console.log(response.error);
   });
 });
