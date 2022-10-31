@@ -4,11 +4,7 @@ import request from "supertest";
 
 import DB from "../../src/database/config/data-source";
 
-import { jest } from "@jest/globals";
-
 describe("create user", () => {
-  jest.setTimeout(200000);
-
   beforeEach(async () => {
     await DB.initialize();
 
