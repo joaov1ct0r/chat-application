@@ -20,7 +20,7 @@ export default function (req: IReq, res: Response, next: NextFunction) {
     ) as IJwt;
 
     if (!verifiedToken) {
-      return res.status(401).json({ error: "Falha na autenticação!" });
+      return res.status(403).json({ error: "Falha na autenticação!" });
     }
     req.userId = verifiedToken.id;
 

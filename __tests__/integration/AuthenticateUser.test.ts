@@ -27,4 +27,22 @@ describe("authenticate user", () => {
 
     expect(response.body.status).toEqual(400);
   });
+
+  it("should return an error if password arent matching", async () => {
+    await request(new App().server).post("/api/user/register").send({
+      email: "fadklsjfl4820@mail.comm.br",
+      name: "user name fadlskjflak",
+      nascimento: "01/09/2001",
+      senha: "fdlkajflksa8402fw",
+    });
+
+    const response = await request(new App().server)
+      .post("/api/user/login")
+      .send({
+        email: "fadklsjfl4820@mail.comm.br",
+        senha: "fdlskajfl42802",
+      });
+
+    expect(response.body.status).toEqual(401);
+  });
 });
