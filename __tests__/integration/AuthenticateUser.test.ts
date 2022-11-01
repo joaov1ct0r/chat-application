@@ -56,4 +56,24 @@ describe("authenticate user", () => {
 
     expect(response.status).toEqual(400);
   });
+
+  it("should return a jwt token when authenticated", async () => {
+    await request(new App().server).post("/api/user/register").send({
+      email: "vmclasjfladsfal@mail.com",
+      name: "user name fadlskjflak",
+      nascimento: "01/09/2001",
+      senha: "jfdslkfmmmmmmmmmm42",
+    });
+
+    const response = await request(new App().server)
+      .post("/api/user/login")
+      .send({
+        email: "vmclasjfladsfal@mail.com",
+        senha: "jfdslkfmmmmmmmmmm42",
+      });
+
+    expect(response.headers["set-cookie"]).toBeDefined();
+
+    expect(response.body.status).toEqual(200);
+  });
 });
