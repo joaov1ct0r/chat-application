@@ -45,9 +45,11 @@ export default class CreateUserController {
         senha
       );
 
-      return res.json({ message: "Usuario cadastrado!", status: 201 });
+      return res
+        .status(201)
+        .json({ message: "Usuario cadastrado!", status: 201 });
     } catch (err: any) {
-      return res.json({
+      return res.status(400).json({
         message: err.message,
         status: err.statusCode,
       });
