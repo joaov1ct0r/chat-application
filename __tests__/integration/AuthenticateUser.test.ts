@@ -40,9 +40,20 @@ describe("authenticate user", () => {
       .post("/api/user/login")
       .send({
         email: "fadklsjfl4820@mail.comm.br",
-        senha: "fdlskajfl42802",
+        senha: "jfslmmmmmmmmmm42",
       });
 
     expect(response.body.status).toEqual(401);
+  });
+
+  it("should return an error if wrong data is send", async () => {
+    const response = await request(new App().server)
+      .post("/api/user/login")
+      .send({
+        email: "@mail.com",
+        senha: "123",
+      });
+
+    expect(response.status).toEqual(400);
   });
 });
