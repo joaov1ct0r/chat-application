@@ -47,6 +47,7 @@ services:
       - redis
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
+      - 3001:3001
     logging:
       driver: "json-file"
       options:
