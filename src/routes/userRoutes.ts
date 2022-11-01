@@ -1,5 +1,7 @@
 import express from "express";
 
+import resolver from "../utils/Resolver";
+
 import CreateUserController from "../controller/CreateUserController";
 
 import ICreateUserController from "../interfaces/ICreateUserController";
@@ -15,8 +17,8 @@ const createUserController: ICreateUserController = new CreateUserController();
 const authenticateUserController: IAuthenticateUserController =
   new AuthenticateUserController();
 
-userRouter.post("/login", authenticateUserController.handle);
+userRouter.post("/login", resolver(authenticateUserController.handle));
 
-userRouter.post("/register", createUserController.handle);
+userRouter.post("/register", resolver(createUserController.handle));
 
 export default userRouter;

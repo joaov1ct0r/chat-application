@@ -49,7 +49,7 @@ export default class CreateUserController {
         .status(201)
         .json({ message: "Usuario cadastrado!", status: 201 });
     } catch (err: any) {
-      return res.status(400).json({
+      return res.status(err.statusCode).json({
         message: err.message,
         status: err.statusCode,
       });

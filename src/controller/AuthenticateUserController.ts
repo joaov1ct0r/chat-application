@@ -13,8 +13,6 @@ import { Repository } from "typeorm";
 import User from "../database/entities/User";
 
 import IUser from "../interfaces/IUser";
-import BadRequestError from "../errors/BadRequestError";
-import UnathorizedError from "../errors/UnathorizedError";
 
 export default class AuthenticateUserController {
   public async handle(req: Request, res: Response): Promise<void | Response> {
@@ -45,10 +43,7 @@ export default class AuthenticateUserController {
         .status(200)
         .json({ message: "Login realizado com sucesso!", status: 200 });
     } catch (err: any) {
-      if (err instanceof BadRequestError) res.status(400);
-      else if (err instanceof UnathorizedError) res.status(401);
-      else res.status(500);
-      return res.json({
+      return res.status(err.statusCode).json({
         message: err.message,
         status: err.statusCode,
       });
