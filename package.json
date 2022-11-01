@@ -2,7 +2,7 @@
   "name": "node-chat-socket-mvc",
   "author": "github.com/joaov1ct0r",
   "version": "1.0.0",
-  "description": "Sistema feito em arquitetura MVC de registro e login de usuarios com chat para conversas entre usuarios registrados, feito em NodeJS com TypeScript utilizando Express e armazenando dados no banco de dados MySQL utilizando o ORM Sequelize.",
+  "description": "Sistema feito em arquitetura MVC de registro e login de usuarios com chat para conversas entre usuarios registrados, feito em JavaScript utilizando o runtime NodeJS com o framework Express com TypeScript, protegendo rotas utilizando JWT, autenticando dados de entrada com Joi e criando models, migrations e armazenando dados no banco de dados MySQL utilizando o ORM TypeORM. Testes unitários e de integração feitos com Jest e SuperTest, ambientes de produção e desenvolvimento criados em containers Docker utilizando Dockerfile para multi stage building e Docker Compose para orquestração de containers.",
   "main": "./build/index.js",
   "type": "module",
   "scripts": {
