@@ -19,7 +19,32 @@
     "nodejs",
     "express",
     "mysql",
-    "sequelize"
+    "typeorm",
+    "docker",
+    "docker-compose",
+    "typescript",
+    "@hapi/joi",
+    "bcryptjs",
+    "cookie-parser",
+    "cors",
+    "dotenv",
+    "ioredis",
+    "jsonwebtoken",
+    "mysql2",
+    "reflect-metadata",
+    "socket.io",
+    "swagger",
+    "@types",
+    "babel",
+    "eslint",
+    "prettier",
+    "jest",
+    "jest-mock-extended",
+    "rimraf",
+    "supertest",
+    "ts-jest",
+    "ts-node",
+    "ts-node-dev"
   ],
   "license": "MIT",
   "dependencies": {
@@ -69,7 +94,6 @@
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.5.4",
-    "uuid": "^9.0.0"
+    "typescript": "^4.5.4"
   }
 }

@@ -16,7 +16,7 @@
 
 <h2>Sobre</h2>
 
-<p>Sistema feito em arquitetura MVC de registro e login de usuarios com chat para conversas entre usuarios registrados, feito em NodeJS com TypeScript utilizando Express e armazenando dados no banco de dados MySQL utilizando o ORM Sequelize.</p>
+<p>Sistema feito em arquitetura MVC de registro e login de usuarios com chat para conversas entre usuarios registrados, feito em JavaScript utilizando o runtime NodeJS com o framework Express com TypeScript, protegendo rotas utilizando JWT, autenticando dados de entrada com Joi e criando models, migrations e armazenando dados no banco de dados MySQL utilizando o ORM TypeORM. Testes unitários e de integração feitos com Jest e SuperTest, ambientes de produção e desenvolvimento criados em containers Docker utilizando Dockerfile para multi stage building e Docker Compose para orquestração de containers</p>
 
 <h2>MODO DE USO</h2>
 
@@ -57,8 +57,8 @@
 
 </p>
 
-<p>APOS INICIAR O PROJETO EM SEU MODO PREFERIDO VA PARA A ROTA:<br><code>http://localhost:3000/api/docs</code>
-PARA VER AS ROTAS DISPONIVEIS PARA FAZER AS REQUISIÇÕES</p>
+<h3>APOS INICIAR O PROJETO EM SEU MODO PREFERIDO VA PARA A ROTA:<br><code>http://localhost:3000/api/docs</code>
+PARA VER AS ROTAS DISPONIVEIS PARA FAZER AS REQUISIÇÕES</h3>
 
 <h2>Picture</h2>
 
