@@ -16,7 +16,7 @@
 
 <h2>Sobre</h2>
 
-<p>Sistema feito em arquitetura MVC de registro e login de usuarios com chat para conversas entre usuarios registrados, feito em JavaScript utilizando o runtime NodeJS com o framework Express com TypeScript, protegendo rotas utilizando JWT, autenticando dados de entrada com Joi e criando models, migrations e armazenando dados no banco de dados MySQL utilizando o ORM TypeORM. Testes unitários e de integração feitos com Jest e SuperTest, ambientes de produção e desenvolvimento criados em containers Docker utilizando Dockerfile para multi stage building e Docker Compose para orquestração de containers.</p>
+<p>Sistema feito em arquitetura MVC de registro e login de usuarios com chat para conversas entre usuarios registrados, feito em JavaScript utilizando o runtime NodeJS com o framework Express com TypeScript, protegendo rotas utilizando JWT, autenticando dados de entrada com Joi e criando models, migrations e armazenando dados no banco de dados MySQL utilizando o ORM TypeORM e Redis para armazenar mensagens do chat. Testes unitários e de integração feitos com Jest e SuperTest, ambientes de produção e desenvolvimento criados em containers Docker utilizando Dockerfile para multi stage building e Docker Compose para orquestração de containers.</p>
 
 <h2>MODO DE USO</h2>
 
