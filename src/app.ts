@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from "express";
+import express, { Request, Response } from "express";
 
 import cookieParser from "cookie-parser";
 
@@ -11,6 +11,8 @@ import userRouter from "./routes/userRoutes";
 import swaggerUi from "swagger-ui-express";
 
 import swaggerDocs from "./swagger.json";
+import BadRequestError from "./errors/BadRequestError";
+import UnathorizedError from "./errors/UnathorizedError";
 
 export default class App {
   public server: express.Application;
@@ -41,7 +43,11 @@ export default class App {
     this.server.use(express.urlencoded({ extended: true }));
 
     this.server.use(
-      (error: any, req: Request, res: Response, next: NextFunction) => {
+      (
+        error: BadRequestError | UnathorizedError,
+        req: Request,
+        res: Response
+      ) => {
         if (error && error.statusCode) {
           return res.status(error.statusCode).json({
             message: error.message,
