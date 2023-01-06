@@ -1,15 +1,9 @@
 import express, { Request, Response } from "express";
-
 import cookieParser from "cookie-parser";
-
 import cors from "cors";
-
 import auth from "./middlewares/auth";
-
 import userRouter from "./routes/userRoutes";
-
 import swaggerUi from "swagger-ui-express";
-
 import swaggerDocs from "./swagger.json";
 import BadRequestError from "./errors/BadRequestError";
 import UnathorizedError from "./errors/UnathorizedError";
