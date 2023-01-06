@@ -1,7 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import "dotenv/config";
-
 import { DataSource } from "typeorm";
-
 import User from "../entities/User";
 
 const DB: DataSource = new DataSource({
