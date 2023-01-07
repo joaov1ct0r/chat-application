@@ -2,7 +2,7 @@
 import "reflect-metadata";
 import "dotenv/config";
 import App from "./app";
-import socketIO from "./controller/handleIo";
+import SocketIO from "./controller/handleIo";
 import DB from "./database/config/data-source";
 
 const server = new App().server.listen(
@@ -33,4 +33,4 @@ const server = new App().server.listen(
   }
 );
 
-socketIO(server);
+new SocketIO().socket(server);
