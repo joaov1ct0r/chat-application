@@ -2,10 +2,7 @@ import { Repository } from "typeorm";
 import IUser from "../../interfaces/IUser";
 import DB from "../config/data-source";
 import User from "../entities/User";
-
-interface ICreateUserRepository {
-  execute(email: string): Promise<IUser | null>;
-}
+import ICreateUserRepository from "../../interfaces/ICreateUserRepository";
 
 export default class CreateUserRepository implements ICreateUserRepository {
   public readonly userRepository: Repository<IUser>;
