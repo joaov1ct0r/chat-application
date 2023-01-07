@@ -33,4 +33,4 @@ const server = new App().server.listen(
   }
 );
 
-new SocketIO().socket(server);
+new SocketIO().socketServer(server);
