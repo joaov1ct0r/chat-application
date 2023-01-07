@@ -1,12 +1,14 @@
 import express, { Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import auth from "./middlewares/auth";
+import Authorization from "./middlewares/auth";
 import userRouter from "./routes/userRoutes";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocs from "./swagger.json";
 import BadRequestError from "./errors/BadRequestError";
 import UnathorizedError from "./errors/UnathorizedError";
+import InternalError from "./errors/InternalError";
+import ForbiddenError from "./errors/ForbiddenError";
 
 export default class App {
   public server: express.Application;
@@ -38,7 +40,11 @@ export default class App {
 
     this.server.use(
       (
-        error: BadRequestError | UnathorizedError,
+        error:
+          | BadRequestError
+          | UnathorizedError
+          | ForbiddenError
+          | InternalError,
         req: Request,
         res: Response
       ) => {
@@ -71,7 +77,7 @@ export default class App {
 
     this.server.use(
       "/chat",
-      auth,
+      new Authorization().handle,
       process.env.NODE_ENV === "production"
         ? express.static("build/views/chat")
         : express.static("src/views/chat")
