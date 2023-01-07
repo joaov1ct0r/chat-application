@@ -1,5 +1,10 @@
 import IUser from "./IUser";
 
 export default interface ICreateUserRepository {
-  execute(email: string): Promise<IUser | null>;
+  execute(
+    email: string,
+    nome: string,
+    nascimento: string,
+    senha: string
+  ): Promise<IUser>;
 }
