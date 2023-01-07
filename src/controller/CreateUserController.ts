@@ -5,6 +5,7 @@ import ValidateUser from "../validations/validateUserData";
 import IUser from "../interfaces/IUser";
 import BadRequestError from "../errors/BadRequestError";
 import CreateUserRepository from "../database/repositories/CreateUserRepository";
+import AuthenticateUserRepository from "../database/repositories/AuthenticateUserRepository";
 
 export default class CreateUserController {
   public static async handle(
@@ -29,14 +30,18 @@ export default class CreateUserController {
 
     const senha: string = req.body.senha;
 
-    const repository: CreateUserRepository = new CreateUserRepository();
+    const createUserRepository: CreateUserRepository =
+      new CreateUserRepository();
+
+    const authenticateUserRepository: AuthenticateUserRepository =
+      new AuthenticateUserRepository();
 
     const createUserService: CreateUserService = new CreateUserService(
-      repository
+      authenticateUserRepository,
+      createUserRepository
     );
 
     try {
-      // eslint-disable-next-line no-unused-vars
       const user: IUser = await createUserService.execute(
         email,
         name,

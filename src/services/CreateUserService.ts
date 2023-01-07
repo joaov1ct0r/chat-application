@@ -1,16 +1,18 @@
 import IUser from "../interfaces/IUser";
-
-import bcrypt from "bcryptjs";
-
 import BadRequestError from "../errors/BadRequestError";
-
-import { Repository } from "typeorm";
+import ICreateUserRepository from "../interfaces/ICreateUserRepository";
+import IAuthenticateUserRepository from "../interfaces/IAuthenticateUserRepository";
 
 export default class CreateUserService {
-  private readonly repository: Repository<IUser>;
+  private readonly authenticateUserRepository: IAuthenticateUserRepository;
+  private readonly createUserRepository: ICreateUserRepository;
 
-  constructor(repository: Repository<IUser>) {
-    this.repository = repository;
+  constructor(
+    authenticateUserRepository: IAuthenticateUserRepository,
+    createUserRepository: ICreateUserRepository
+  ) {
+    this.authenticateUserRepository = authenticateUserRepository;
+    this.createUserRepository = createUserRepository;
   }
 
   public async execute(
@@ -19,22 +21,20 @@ export default class CreateUserService {
     nascimento: string,
     senha: string
   ): Promise<IUser> {
-    const user: IUser | null = await this.repository.findOneBy({
-      email,
-    });
+    const user: IUser | null = await this.authenticateUserRepository.execute(
+      email
+    );
 
     if (user !== null) {
       throw new BadRequestError("User ja cadastrado");
     }
 
-    const newUser: IUser = this.repository.create({
+    const newUser: IUser = await this.createUserRepository.execute(
       email,
       nome,
       nascimento,
-      senha: bcrypt.hashSync(senha),
-    });
-
-    await this.repository.save(newUser);
+      senha
+    );
 
     return newUser;
   }
