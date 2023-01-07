@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
-import { loginValidate } from "../validations/validateUserData";
+import ValidateUser from "../validations/validateUserData";
 import AuthenticateUserService from "../services/AuthenticateUserService";
 import BadRequestError from "../errors/BadRequestError";
 import AuthenticateUserRepository from "../database/repositories/AuthenticateUserRepository";
 
 export default class AuthenticateUserController {
   public async handle(req: Request, res: Response): Promise<void | Response> {
-    const { error } = loginValidate(req.body);
+    const { error } = new ValidateUser().loginValidate(req.body);
 
     if (error) {
       const err = new BadRequestError(error.message);
