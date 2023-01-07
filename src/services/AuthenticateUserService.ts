@@ -1,28 +1,20 @@
 import "dotenv/config";
-
 import IUser from "../interfaces/IUser";
-
 import BadRequestError from "../errors/BadRequestError";
-
 import UnathorizedError from "../errors/UnathorizedError";
-
 import bcrypt from "bcryptjs";
-
 import jwt from "jsonwebtoken";
-
-import { Repository } from "typeorm";
+import IAuthenticateUserRepository from "../interfaces/IAuthenticateUserRepository";
 
 export default class AuthenticateUserService {
-  private readonly repository: Repository<IUser>;
+  private readonly repository: IAuthenticateUserRepository;
 
-  constructor(repository: Repository<IUser>) {
+  constructor(repository: IAuthenticateUserRepository) {
     this.repository = repository;
   }
 
   public async execute(email: string, senha: string): Promise<string> {
-    const user: IUser | null = await this.repository.findOneBy({
-      email,
-    });
+    const user: IUser | null = await this.repository.execute(email);
 
     if (user === null) {
       throw new BadRequestError("Usuario não encontrado!");
