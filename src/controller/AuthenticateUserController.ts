@@ -6,7 +6,10 @@ import BadRequestError from "../errors/BadRequestError";
 import AuthenticateUserRepository from "../database/repositories/AuthenticateUserRepository";
 
 export default class AuthenticateUserController {
-  public async handle(req: Request, res: Response): Promise<void | Response> {
+  public static async handle(
+    req: Request,
+    res: Response
+  ): Promise<void | Response> {
     const { error } = new ValidateUser().loginValidate(req.body);
 
     if (error) {

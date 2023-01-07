@@ -1,25 +1,25 @@
 import { Request, Response } from "express";
-
 import CreateUserService from "../services/CreateUserService";
-
-import { registerValidate } from "../validations/validateUserData";
-
-import ICreateUserService from "../interfaces/ICreateUserService";
-
+import ValidateUser from "../validations/validateUserData";
 import DB from "../database/config/data-source";
-
 import IUser from "../interfaces/IUser";
-
 import { Repository } from "typeorm";
-
 import User from "../database/entities/User";
+import BadRequestError from "../errors/BadRequestError";
 
 export default class CreateUserController {
-  public async handle(req: Request, res: Response): Promise<void | Response> {
-    const { error } = registerValidate(req.body);
+  public static async handle(
+    req: Request,
+    res: Response
+  ): Promise<void | Response> {
+    const { error } = new ValidateUser().registerValidate(req.body);
 
     if (error) {
-      return res.status(400).send(error);
+      const err = new BadRequestError(error.message);
+
+      return res
+        .status(err.statusCode)
+        .json({ error: err, status: err.statusCode });
     }
 
     const email: string = req.body.email;
