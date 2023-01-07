@@ -1,11 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
 import CreateUserService from "../services/CreateUserService";
 import ValidateUser from "../validations/validateUserData";
-import DB from "../database/config/data-source";
 import IUser from "../interfaces/IUser";
-import { Repository } from "typeorm";
-import User from "../database/entities/User";
 import BadRequestError from "../errors/BadRequestError";
+import CreateUserRepository from "../database/repositories/CreateUserRepository";
 
 export default class CreateUserController {
   public static async handle(
@@ -30,9 +29,9 @@ export default class CreateUserController {
 
     const senha: string = req.body.senha;
 
-    const repository: Repository<IUser> = DB.getRepository(User);
+    const repository: CreateUserRepository = new CreateUserRepository();
 
-    const createUserService: ICreateUserService = new CreateUserService(
+    const createUserService: CreateUserService = new CreateUserService(
       repository
     );
 
@@ -47,10 +46,10 @@ export default class CreateUserController {
 
       return res
         .status(201)
-        .json({ message: "Usuario cadastrado!", status: 201 });
+        .json({ message: "Usuario cadastrado!", status: 201, user });
     } catch (err: any) {
       return res.status(err.statusCode).json({
-        message: err.message,
+        error: err.message,
         status: err.statusCode,
       });
     }

@@ -41,7 +41,7 @@ export default class AuthenticateUserController {
         .json({ message: "Login realizado com sucesso!", status: 200 });
     } catch (err: any) {
       return res.status(err.statusCode).json({
-        message: err.message,
+        error: err.message,
         status: err.statusCode,
       });
     }
