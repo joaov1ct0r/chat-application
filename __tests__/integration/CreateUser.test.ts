@@ -1,7 +1,5 @@
 import App from "../../src/app";
-
 import request from "supertest";
-
 import DB from "../../src/database/config/data-source";
 
 describe("create user", () => {
@@ -24,7 +22,7 @@ describe("create user", () => {
         email: "@mail.com",
       });
 
-    expect(response.status).toEqual(400);
+    expect(response.body.status).toEqual(400);
   });
 
   it("should return an error if user already exists", async () => {
