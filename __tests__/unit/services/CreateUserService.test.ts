@@ -1,7 +1,6 @@
 import { mock } from "jest-mock-extended";
 import IUser from "../../../src/interfaces/IUser";
 import CreateUserService from "../../../src/services/CreateUserService";
-import { Repository } from "typeorm";
 import BadRequestError from "../../../src/errors/BadRequestError";
 import IAuthenticateUserRepository from "../../../src/interfaces/IAuthenticateUserRepository";
 import ICreateUserRepository from "../../../src/interfaces/ICreateUserRepository";
@@ -10,7 +9,7 @@ const makeSut = () => {
   const mockAuthenticateUserRepository = mock<IAuthenticateUserRepository>();
   const mockCreateUserRepository = mock<ICreateUserRepository>();
 
-  const sut: ICreateUserService = new CreateUserService(
+  const sut: CreateUserService = new CreateUserService(
     mockAuthenticateUserRepository,
     mockCreateUserRepository
   );
@@ -21,9 +20,9 @@ const makeSut = () => {
 describe("create user service", () => {
   describe("when execute is called", () => {
     it("should throw an error if user already exists", async () => {
-      const { sut, mockRepository } = makeSut();
+      const { sut, mockAuthenticateUserRepository } = makeSut();
 
-      mockRepository.findOneBy.mockResolvedValueOnce({
+      mockAuthenticateUserRepository.execute.mockResolvedValueOnce({
         id: "1",
       } as unknown as IUser);
 
@@ -38,19 +37,12 @@ describe("create user service", () => {
     });
 
     it("should create a new user", async () => {
-      const { sut, mockRepository } = makeSut();
+      const { sut, mockAuthenticateUserRepository, mockCreateUserRepository } =
+        makeSut();
 
-      mockRepository.findOneBy.mockResolvedValueOnce(null);
+      mockAuthenticateUserRepository.execute.mockResolvedValueOnce(null);
 
-      mockRepository.create.mockReturnValueOnce({
-        id: 1,
-        nome: "user nome",
-        email: "user1234@mail.com.br",
-        senha: "54385092-394-29-2",
-        nascimento: "00/00/0000",
-      } as IUser);
-
-      mockRepository.save.mockResolvedValueOnce({
+      mockCreateUserRepository.execute.mockResolvedValueOnce({
         id: 1,
         nome: "user nome",
         email: "user1234@mail.com.br",
