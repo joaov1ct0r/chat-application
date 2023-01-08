@@ -1,38 +1,29 @@
 import { mock } from "jest-mock-extended";
-
 import IUser from "../../../src/interfaces/IUser";
-
 import AuthenticateUserService from "../../../src/services/AuthenticateUserService";
-
-import IAuthenticateUserService from "../../../src/interfaces/IAuthenticateUserService";
-
 import bcrypt from "bcryptjs";
-
 import jwt from "jsonwebtoken";
-
 import IJwt from "../../../src/interfaces/IJwt";
-
-import { Repository } from "typeorm";
-
 import BadRequestError from "../../../src/errors/BadRequestError";
 import UnathorizedError from "../../../src/errors/UnathorizedError";
+import IAuthenticateUserRepository from "../../../src/interfaces/IAuthenticateUserRepository";
 
 const makeSut = () => {
-  const mockRepository = mock<Repository<IUser>>();
+  const mockAuthenticateUserRepository = mock<IAuthenticateUserRepository>();
 
-  const sut: IAuthenticateUserService = new AuthenticateUserService(
-    mockRepository
+  const sut: AuthenticateUserService = new AuthenticateUserService(
+    mockAuthenticateUserRepository
   );
 
-  return { mockRepository, sut };
+  return { mockAuthenticateUserRepository, sut };
 };
 
 describe("authenticate user service", () => {
   describe("when execute is called", () => {
     it("should throw an error if user is not registered", async () => {
-      const { sut, mockRepository } = makeSut();
+      const { sut, mockAuthenticateUserRepository } = makeSut();
 
-      mockRepository.findOneBy.mockResolvedValueOnce(null);
+      mockAuthenticateUserRepository.execute.mockResolvedValueOnce(null);
 
       expect(async () => {
         await sut.execute("user1234@mail.com.br", "123412341234");
@@ -40,9 +31,9 @@ describe("authenticate user service", () => {
     });
 
     it("should throw an error if password is incorrect", async () => {
-      const { sut, mockRepository } = makeSut();
+      const { sut, mockAuthenticateUserRepository } = makeSut();
 
-      mockRepository.findOneBy.mockResolvedValueOnce({
+      mockAuthenticateUserRepository.execute.mockResolvedValueOnce({
         id: 1,
         senha: "123123123",
       } as IUser);
@@ -53,9 +44,9 @@ describe("authenticate user service", () => {
     });
 
     it("should return a jwt token", async () => {
-      const { sut, mockRepository } = makeSut();
+      const { sut, mockAuthenticateUserRepository } = makeSut();
 
-      mockRepository.findOneBy.mockResolvedValueOnce({
+      mockAuthenticateUserRepository.execute.mockResolvedValueOnce({
         id: 1,
         nome: "user nome",
         email: "user1234@mail.com.br",
