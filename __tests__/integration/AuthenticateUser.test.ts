@@ -1,7 +1,5 @@
 import App from "../../src/app";
-
 import request from "supertest";
-
 import DB from "../../src/database/config/data-source";
 
 describe("authenticate user", () => {
@@ -54,7 +52,7 @@ describe("authenticate user", () => {
         senha: "123",
       });
 
-    expect(response.status).toEqual(400);
+    expect(response.body.status).toEqual(400);
   });
 
   it("should return a jwt token when authenticated", async () => {
