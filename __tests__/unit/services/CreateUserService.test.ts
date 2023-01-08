@@ -1,21 +1,21 @@
 import { mock } from "jest-mock-extended";
-
 import IUser from "../../../src/interfaces/IUser";
-
 import CreateUserService from "../../../src/services/CreateUserService";
-
-import ICreateUserService from "../../../src/interfaces/ICreateUserService";
-
 import { Repository } from "typeorm";
-
 import BadRequestError from "../../../src/errors/BadRequestError";
+import IAuthenticateUserRepository from "../../../src/interfaces/IAuthenticateUserRepository";
+import ICreateUserRepository from "../../../src/interfaces/ICreateUserRepository";
 
 const makeSut = () => {
-  const mockRepository = mock<Repository<IUser>>();
+  const mockAuthenticateUserRepository = mock<IAuthenticateUserRepository>();
+  const mockCreateUserRepository = mock<ICreateUserRepository>();
 
-  const sut: ICreateUserService = new CreateUserService(mockRepository);
+  const sut: ICreateUserService = new CreateUserService(
+    mockAuthenticateUserRepository,
+    mockCreateUserRepository
+  );
 
-  return { mockRepository, sut };
+  return { mockAuthenticateUserRepository, mockCreateUserRepository, sut };
 };
 
 describe("create user service", () => {
