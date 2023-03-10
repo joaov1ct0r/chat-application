@@ -15,8 +15,6 @@
 <ul>
   <li>NodeJS</li>
   <br>
-  <li>NPM</li>
-  <br>
   <li>Docker</li>
   <br>
   <li>Docker-Compose</li>
