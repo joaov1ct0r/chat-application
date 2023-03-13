@@ -6,7 +6,7 @@ import userRouter from "./routes/userRoutes";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocs from "./swagger.json";
 import BadRequestError from "./errors/BadRequestError";
-import UnathorizedError from "./errors/UnathorizedError";
+import UnathorizedError from "./errors/UnauthorizedError";
 import InternalError from "./errors/InternalError";
 import ForbiddenError from "./errors/ForbiddenError";
 

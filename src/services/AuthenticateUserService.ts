@@ -1,7 +1,7 @@
 import "dotenv/config";
 import IUser from "../interfaces/IUser";
 import BadRequestError from "../errors/BadRequestError";
-import UnathorizedError from "../errors/UnathorizedError";
+import UnathorizedError from "../errors/UnauthorizedError";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import IAuthenticateUserRepository from "../interfaces/IAuthenticateUserRepository";
