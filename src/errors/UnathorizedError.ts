@@ -1,6 +1,5 @@
 export default class UnathorizedError extends Error {
   public readonly message: string;
-
   public readonly statusCode: number;
 
   constructor(message: string, statusCode = 401) {
