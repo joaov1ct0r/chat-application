@@ -7,7 +7,7 @@ import User from "../entities/User";
 export default class AuthenticateUserRepository
   implements IAuthenticateUserRepository
 {
-  public readonly userRepository: Repository<IUser>;
+  private readonly userRepository: Repository<IUser>;
 
   constructor() {
     this.userRepository = DB.getRepository(User);
