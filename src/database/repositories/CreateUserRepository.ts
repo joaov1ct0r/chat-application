@@ -6,7 +6,7 @@ import ICreateUserRepository from "../../interfaces/ICreateUserRepository";
 import bcrypt from "bcryptjs";
 
 export default class CreateUserRepository implements ICreateUserRepository {
-  public readonly userRepository: Repository<IUser>;
+  private readonly userRepository: Repository<IUser>;
 
   constructor() {
     this.userRepository = DB.getRepository(User);
