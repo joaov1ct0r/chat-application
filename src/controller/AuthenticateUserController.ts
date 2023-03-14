@@ -6,11 +6,20 @@ import BadRequestError from "../errors/BadRequestError";
 import AuthenticateUserRepository from "../database/repositories/AuthenticateUserRepository";
 
 export default class AuthenticateUserController {
-  public static async handle(
+  private readonly repository: AuthenticateUserRepository;
+  private readonly validateUser: ValidateUser;
+  private readonly authenticateUserService: AuthenticateUserService;
+
+  constructor() {
+    this.repository = new AuthenticateUserRepository();
+    this.validateUser = new ValidateUser();
+    this.authenticateUserService = new AuthenticateUserService(this.repository);
+  }
+  public async handle(
     req: Request,
     res: Response
   ): Promise<void | Response> {
-    const { error } = new ValidateUser().loginValidate(req.body);
+    const { error } = this.validateUser.loginValidate(req.body);
 
     if (error) {
       const err = new BadRequestError(error.message);
@@ -22,14 +31,8 @@ export default class AuthenticateUserController {
 
     const senha: string = req.body.senha;
 
-    const repository: AuthenticateUserRepository =
-      new AuthenticateUserRepository();
-
-    const authenticateUserService: AuthenticateUserService =
-      new AuthenticateUserService(repository);
-
     try {
-      const token: string = await authenticateUserService.execute(email, senha);
+      const token: string = await this.authenticateUserService.execute(email, senha);
 
       res.cookie("authorization", `Bearer ${token}`, {
         httpOnly: true,
