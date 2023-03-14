@@ -8,11 +8,26 @@ import CreateUserRepository from "../database/repositories/CreateUserRepository"
 import AuthenticateUserRepository from "../database/repositories/AuthenticateUserRepository";
 
 export default class CreateUserController {
-  public static async handle(
+  private readonly createUserRepository: CreateUserRepository;
+  private readonly authenticateUserRepository: AuthenticateUserRepository;
+  private readonly createUserService: CreateUserService;
+  private readonly validateUser: ValidateUser;
+
+  constructor() {
+    this.validateUser = new ValidateUser();
+    this.createUserRepository = new CreateUserRepository();
+    this.authenticateUserRepository = new AuthenticateUserRepository();
+    this.createUserService = new CreateUserService(
+      this.authenticateUserRepository,
+      this.createUserRepository
+    );
+  }
+
+  public async handle(
     req: Request,
     res: Response
   ): Promise<void | Response> {
-    const { error } = new ValidateUser().registerValidate(req.body);
+    const { error } = this.validateUser.registerValidate(req.body);
 
     if (error) {
       const err = new BadRequestError(error.message);
@@ -30,19 +45,8 @@ export default class CreateUserController {
 
     const senha: string = req.body.senha;
 
-    const createUserRepository: CreateUserRepository =
-      new CreateUserRepository();
-
-    const authenticateUserRepository: AuthenticateUserRepository =
-      new AuthenticateUserRepository();
-
-    const createUserService: CreateUserService = new CreateUserService(
-      authenticateUserRepository,
-      createUserRepository
-    );
-
     try {
-      const user: IUser = await createUserService.execute(
+      const user: IUser = await this.createUserService.execute(
         email,
         name,
         nascimento,
