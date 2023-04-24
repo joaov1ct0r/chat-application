@@ -17,15 +17,15 @@ export default class App {
     this.server = express()
 
     this.middlewares().catch((err: any) => {
-      console.log(err)
+      console.log('Erro em middlewares', err)
     })
 
     this.userRoutes().catch((err: any) => {
-      console.log(err)
+      console.log('Erro em userRoutes', err)
     })
 
     this.docsRoutes().catch((err: any) => {
-      console.log(err)
+      console.log('Erro em docsRoutes', err)
     })
   }
 
