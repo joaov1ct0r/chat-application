@@ -1,36 +1,42 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import "reflect-metadata";
-import "dotenv/config";
-import App from "./app";
-import SocketIO from "./controller/handleIo";
-import DB from "./database/config/data-source";
+import 'reflect-metadata'
+import 'dotenv/config'
+import App from './app'
+import SocketIO from './controller/handleIo'
+import DB from './database/config/data-source'
 
-const server = new App().server.listen(
-  Number(process.env.SERVER_PORT!),
-  String(process.env.SERVER_HOST!),
-  async () => {
-    let retries = 5;
+const connect = async (): Promise<void> => {
+  let retries = 5
 
-    while (retries) {
-      try {
-        await DB.initialize();
+  while (retries > 0) {
+    try {
+      await DB.initialize()
 
-        console.log("DB Connected");
+      console.log('DB Connected')
 
-        console.log("Server running");
+      console.log('Server running')
 
-        break;
-      } catch (error: unknown) {
-        console.log(error);
+      break
+    } catch (error) {
+      console.log(error)
 
-        retries -= 1;
+      retries -= 1
 
-        console.log(`retries left ${retries}!`);
+      console.log(`retries left ${retries}!`)
 
-        await new Promise((resolve) => setTimeout(resolve, 5000));
-      }
+      await new Promise((resolve) => setTimeout(resolve, 5000))
     }
   }
-);
+}
 
-new SocketIO().socketServer(server);
+const server = new App().server.listen(
+  Number(process.env.SERVER_PORT),
+  String(process.env.SERVER_HOST),
+  () => {
+    connect().catch((error) => {
+      console.log(error)
+      console.log('Não foi possível se conectar ao DB')
+    })
+  }
+)
+
+new SocketIO().socketServer(server)
