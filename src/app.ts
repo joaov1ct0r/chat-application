@@ -17,7 +17,7 @@ export default class App {
     this.server = express()
 
     this.middlewares().catch((err: any) => {
-      console.log('Erro em middlewares', err)
+      console.log('Erro em middleware', err)
     })
 
     this.userRoutes().catch((err: any) => {
