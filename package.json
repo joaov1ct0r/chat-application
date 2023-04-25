@@ -24,6 +24,11 @@
       "pre-commit": "lint-staged"
     }
   },
+  "standard": {
+    "ignore": [
+      "./src/views/**/*.js"
+    ]
+  },
   "keywords": [
     "chat",
     "nodejs",
