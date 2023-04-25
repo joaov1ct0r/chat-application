@@ -17,15 +17,13 @@ export default class App {
     this.server = express()
 
     this.middlewares().catch((err: any) => {
-      console.log('Erro em middleware', err)
+      console.error('Erro em middleware', err)
+      process.exit(1)
     })
 
-    this.userRoutes().catch((err: any) => {
-      console.log('Erro em userRoutes', err)
-    })
-
-    this.docsRoutes().catch((err: any) => {
-      console.log('Erro em docsRoutes', err)
+    this.routes().catch((err: any) => {
+      console.error('Erro em routes', err)
+      process.exit(1)
     })
   }
 
@@ -68,7 +66,7 @@ export default class App {
     )
   }
 
-  private async userRoutes (): Promise<void> {
+  private async routes (): Promise<void> {
     this.server.use('/api/user', userRouter)
 
     this.server.use(
@@ -92,9 +90,11 @@ export default class App {
         ? express.static('build/views/chat')
         : express.static('src/views/chat')
     )
-  }
 
-  private async docsRoutes (): Promise<void> {
-    this.server.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+    this.server.use(
+      '/api/docs',
+      swaggerUi.serve,
+      swaggerUi.setup(swaggerDocs)
+    )
   }
 }
