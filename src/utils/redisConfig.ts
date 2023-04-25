@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import Redis from 'ioredis'
 
 const redisClient = new Redis({
-  host: String(process.env.REDIS_HOST!),
-  port: Number(process.env.REDIS_PORT!)
+  host: String(process.env.REDIS_HOST),
+  port: Number(process.env.REDIS_PORT)
 })
 
 redisClient.connect()
