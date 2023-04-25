@@ -16,8 +16,7 @@
   },
   "lint-staged": {
     "*.ts": [
-      "ts-standard --fix",
-      "git add"
+      "ts-standard --fix"
     ]
   },
   "husky": {
