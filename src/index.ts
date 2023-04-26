@@ -13,6 +13,7 @@ const server = new App().server.listen(
     db.execute().catch((error) => {
       console.log(error)
       console.log('Não foi possível se conectar ao DB')
+      process.exit(1)
     })
   }
 )
