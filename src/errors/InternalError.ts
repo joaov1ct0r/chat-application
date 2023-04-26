@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 export default class InternalError extends Error {
-  public readonly message: string;
-  public readonly statusCode: number;
+  public readonly message: string
+  public readonly statusCode: number
 
-  constructor(message: string, statusCode: number = 500) {
-    super(message);
-
-    this.message = message;
-
-    this.statusCode = statusCode;
+  constructor (message: string, statusCode: number = 500) {
+    super(message)
+    this.message = message
+    this.statusCode = statusCode
   }
 }
