@@ -4,9 +4,7 @@ export default class BadRequestError extends Error {
 
   constructor (message: string, statusCode = 400) {
     super(message)
-
     this.message = message
-
     this.statusCode = statusCode
   }
 }
