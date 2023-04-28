@@ -24,7 +24,6 @@ export default class Authorization {
       ) as IJwt
 
       req.userId = verifiedToken.id
-
       next()
     } catch (err: unknown) {
       const error = new ForbiddenError('Falha na autenticação!')
