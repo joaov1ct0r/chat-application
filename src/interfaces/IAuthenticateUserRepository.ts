@@ -1,5 +1,5 @@
-import IUser from "./IUser";
+import IUser from './IUser'
 
 export default interface IAuthenticateUserRepository {
-  execute(email: string): Promise<IUser | null>;
+  execute: (email: string) => Promise<IUser | null>
 }
