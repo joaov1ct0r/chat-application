@@ -4,12 +4,9 @@ import CreateUserController from '../controller/CreateUserController'
 import AuthenticateUserController from '../controller/AuthenticateUserController'
 
 const userRouter: express.Router = express.Router()
-
 const createUserController: CreateUserController = new CreateUserController()
-
 const authenticateUserController: AuthenticateUserController =
   new AuthenticateUserController()
-
 const resolver: Resolver = new Resolver()
 
 userRouter.post(
