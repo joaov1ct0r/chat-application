@@ -1,5 +1,5 @@
-import { JwtPayload } from "jsonwebtoken";
+import { JwtPayload } from 'jsonwebtoken'
 
 export default interface IJwt extends JwtPayload {
-  id?: string;
+  id?: string
 }
