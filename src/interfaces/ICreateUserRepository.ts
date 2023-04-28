@@ -1,10 +1,10 @@
-import IUser from "./IUser";
+import IUser from './IUser'
 
 export default interface ICreateUserRepository {
-  execute(
+  execute: (
     email: string,
     nome: string,
     nascimento: string,
     senha: string
-  ): Promise<IUser>;
+  ) => Promise<IUser>
 }
