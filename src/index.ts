@@ -5,7 +5,6 @@ import SocketIO from './controller/handleIo'
 import ConnectDB from './utils/connectDb'
 
 const db = new ConnectDB()
-
 const server = new App().server.listen(
   Number(process.env.SERVER_PORT),
   String(process.env.SERVER_HOST),
