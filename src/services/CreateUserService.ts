@@ -1,21 +1,21 @@
-import IUser from "../interfaces/IUser";
-import BadRequestError from "../errors/BadRequestError";
-import ICreateUserRepository from "../interfaces/ICreateUserRepository";
-import IAuthenticateUserRepository from "../interfaces/IAuthenticateUserRepository";
+import IUser from '../interfaces/IUser'
+import BadRequestError from '../errors/BadRequestError'
+import ICreateUserRepository from '../interfaces/ICreateUserRepository'
+import IAuthenticateUserRepository from '../interfaces/IAuthenticateUserRepository'
 
 export default class CreateUserService {
-  private readonly authenticateUserRepository: IAuthenticateUserRepository;
-  private readonly createUserRepository: ICreateUserRepository;
+  private readonly authenticateUserRepository: IAuthenticateUserRepository
+  private readonly createUserRepository: ICreateUserRepository
 
-  constructor(
+  constructor (
     authenticateUserRepository: IAuthenticateUserRepository,
     createUserRepository: ICreateUserRepository
   ) {
-    this.authenticateUserRepository = authenticateUserRepository;
-    this.createUserRepository = createUserRepository;
+    this.authenticateUserRepository = authenticateUserRepository
+    this.createUserRepository = createUserRepository
   }
 
-  public async execute(
+  public async execute (
     email: string,
     nome: string,
     nascimento: string,
@@ -23,10 +23,10 @@ export default class CreateUserService {
   ): Promise<IUser> {
     const user: IUser | null = await this.authenticateUserRepository.execute(
       email
-    );
+    )
 
     if (user !== null) {
-      throw new BadRequestError("User ja cadastrado");
+      throw new BadRequestError('User ja cadastrado')
     }
 
     const newUser: IUser = await this.createUserRepository.execute(
@@ -34,8 +34,8 @@ export default class CreateUserService {
       nome,
       nascimento,
       senha
-    );
+    )
 
-    return newUser;
+    return newUser
   }
 }
