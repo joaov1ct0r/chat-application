@@ -27,3 +27,4 @@ build/
 README.md
 Dockerfile
 docker-compose*.yaml
+**/src/logs
