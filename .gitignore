@@ -23,6 +23,7 @@
 /redisdata
 /mysqlDataDev
 /redisdataDev
+src/logs
 
 npm-debug.log*
 yarn-debug.log*
