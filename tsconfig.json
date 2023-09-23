@@ -5,6 +5,22 @@
     "lib": [
       "es6"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@App": ["src/app.ts"],
+      "@Database/*": ["src/database/*"],
+      "@Errors/*": ["src/errors/*"],
+      "@Controllers/*": ["src/controllers/*"],
+      "@Routers/*": ["src/routes/*"],
+      "@Validators/*": ["src/validators/*"],
+      "@Services/*": ["src/services/*"],
+      "@Repositories/*": ["src/repositories/*"],
+      "@Interfaces/*": ["src/interfaces/*"],
+      "@Factories/*": ["src/factories/*"],
+      "@Utils/*": ["src/utils/*"],
+      "@Logger": ["src/logger.ts"],
+      "@Middlewares/*": ["src/middlewares/*"]
+    },
     "allowJs": true,
     "outDir": "build",
     "rootDir": "src",
@@ -17,10 +33,7 @@
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/interfaces"
-    ]
+    "typeRoots": ["./src/types"]
   },
   "exclude": [
     "./node_modules",
@@ -31,5 +44,5 @@
   },
   "include": [
     "./src/**/*.ts"
-  ]
+, "src/types/.d.ts"  ]
 }
