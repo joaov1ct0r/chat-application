@@ -1,7 +1,7 @@
 import express from 'express'
 import Resolver from '../utils/Resolver'
-import CreateUserController from '../controller/CreateUserController'
-import AuthenticateUserController from '../controller/AuthenticateUserController'
+import CreateUserController from '../controllers/CreateUserController'
+import AuthenticateUserController from '../controllers/AuthenticateUserController'
 
 const userRouter: express.Router = express.Router()
 const createUserController: CreateUserController = new CreateUserController()

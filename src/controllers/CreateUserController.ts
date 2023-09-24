@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express'
 import CreateUserService from '../services/CreateUserService'
-import ValidateUser from '../validations/validateUserData'
+import ValidateUser from '../validators/validateUserData'
 import IUser from '../interfaces/IUser'
 import BadRequestError from '../errors/BadRequestError'
 import CreateUserRepository from '../database/repositories/CreateUserRepository'

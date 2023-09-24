@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express'
-import ValidateUser from '../validations/validateUserData'
+import ValidateUser from '../validators/validateUserData'
 import AuthenticateUserService from '../services/AuthenticateUserService'
 import BadRequestError from '../errors/BadRequestError'
 import AuthenticateUserRepository from '../database/repositories/AuthenticateUserRepository'
