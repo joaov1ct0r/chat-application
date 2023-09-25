@@ -1,66 +1,42 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import BaseController from './baseController'
 import { Request, Response } from 'express'
-import CreateUserService from '../services/CreateUserService'
-import ValidateUser from '../validators/validateUserData'
-import IUser from '../interfaces/IUser'
-import BadRequestError from '../errors/BadRequestError'
-import CreateUserRepository from '../database/repositories/CreateUserRepository'
-import AuthenticateUserRepository from '../database/repositories/AuthenticateUserRepository'
+import IUser from '@Interfaces/IUser'
 
-export default class CreateUserController {
-  private readonly createUserRepository: CreateUserRepository
-  private readonly authenticateUserRepository: AuthenticateUserRepository
-  private readonly createUserService: CreateUserService
-  private readonly validateUser: ValidateUser
+export default class CreateUserController extends BaseController<IUser> {
+  public async handle(req: Request, res: Response): Promise<Response> {
+    const schema = this.zod.object({
+      email: this.zod
+        .string({ required_error: 'EMAIL É OBRIGATÓRIO' })
+        .min(1, { message: 'EMAIL DEVE CONTER NO MÍNIMO 1 LETRA' }),
+      name: this.zod
+        .string({ required_error: 'NOME É OBRIGATÓRIO' })
+        .min(1, { message: 'NOME DEVE CONTER NO MÍNIMO 1 LETRA' }),
+      dateBirth: this.zod.string({
+        required_error: 'DATA DE NASCIMENTO É OBRIGATÓRIA',
+      }),
+      password: this.zod
+        .string({ required_error: 'SENHA É OBRIGATÓRIA' })
+        .min(1, { message: 'SENHA DEVE CONTER NO MÍNIMO 1 LETRA' }),
+    })
 
-  constructor () {
-    this.validateUser = new ValidateUser()
-    this.createUserRepository = new CreateUserRepository()
-    this.authenticateUserRepository = new AuthenticateUserRepository()
-    this.createUserService = new CreateUserService(
-      this.authenticateUserRepository,
-      this.createUserRepository
+    const data = this._validator.validate(schema, req.body)
+
+    if (!data.success) {
+      throw this.badRequest(data.error.issues[0].message)
+    }
+
+    const user = await this._service.execute(
+      {
+        dateBirth: req.body.dateBirth,
+        email: req.body.email,
+        name: req.body.name,
+        password: req.body.password,
+      } as IUser,
+      { ...req.token },
     )
-  }
 
-  public async handle (
-    req: Request,
-    res: Response
-  ): Promise<Response> {
-    const { error } = this.validateUser.registerValidate(req.body)
-
-    if (error != null) {
-      const err = new BadRequestError(error.message)
-
-      return res
-        .status(err.statusCode)
-        .json({ error: err, status: err.statusCode })
-    }
-
-    const email: string = req.body.email
-
-    const name: string = req.body.name
-
-    const nascimento: string = req.body.nascimento
-
-    const senha: string = req.body.senha
-
-    try {
-      const user: IUser = await this.createUserService.execute(
-        email,
-        name,
-        nascimento,
-        senha
-      )
-
-      return res
-        .status(201)
-        .json({ message: 'Usuario cadastrado!', status: 201, user })
-    } catch (err: any) {
-      return res.status(err.statusCode).json({
-        error: err.message,
-        status: err.statusCode
-      })
-    }
+    return res
+      .status(201)
+      .json({ user, status: 201, message: 'Usuário criado com sucesso!' })
   }
 }
