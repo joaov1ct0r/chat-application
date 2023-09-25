@@ -3,32 +3,32 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm'
 @Entity('users')
 class User extends BaseEntity {
   @PrimaryGeneratedColumn()
-    id!: number
+  id!: number
 
   @Column({
     unique: true,
     length: 100,
-    nullable: false
+    nullable: false,
   })
-    email!: string
+  email!: string
 
   @Column({
     length: 100,
-    nullable: false
+    nullable: false,
   })
-    nome!: string
+  name!: string
 
   @Column({
     length: 10,
-    nullable: false
+    nullable: false,
   })
-    nascimento!: string
+  dateBirth!: string
 
   @Column({
     length: 250,
-    nullable: false
+    nullable: false,
   })
-    senha!: string
+  password!: string
 }
 
 export default User
