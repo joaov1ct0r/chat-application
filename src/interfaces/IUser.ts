@@ -2,8 +2,8 @@ import User from '../database/entities/User'
 
 export default interface IUser extends User {
   id: number
-  nome: string
+  name: string
   email: string
-  nascimento: string
-  senha: string
+  dateBirth: string
+  password: string
 }
