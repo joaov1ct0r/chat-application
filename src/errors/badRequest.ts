@@ -1,4 +1,4 @@
-export default class BadRequestError extends Error {
+export default class BadRequest extends Error {
   public readonly message: string
   public readonly statusCode: number
 
