@@ -1,4 +1,4 @@
-export default class InternalError extends Error {
+export default class Internal extends Error {
   public readonly message: string
   public readonly statusCode: number
 
