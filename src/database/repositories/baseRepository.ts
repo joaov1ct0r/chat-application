@@ -3,7 +3,7 @@ import { Repository, EntityTarget, FindOptionsWhere } from 'typeorm'
 
 export interface IBaseRepository<S> {
   create(item: S): Promise<S>
-  findFirst(key: string, value: string): Promise<S | null>
+  findOne(key: string, value: string): Promise<S | null>
 }
 
 export abstract class BaseRepository<S extends object>
@@ -22,7 +22,7 @@ export abstract class BaseRepository<S extends object>
     return result
   }
 
-  public async findFirst(key: string, value: string): Promise<S | null> {
+  public async findOne(key: string, value: string): Promise<S | null> {
     const result = await this._collection.findOne({
       where: {
         [key]: value,
