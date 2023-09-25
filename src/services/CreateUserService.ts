@@ -1,41 +1,23 @@
-import IUser from '../interfaces/IUser'
-import BadRequestError from '../errors/BadRequestError'
-import ICreateUserRepository from '../interfaces/ICreateUserRepository'
-import IAuthenticateUserRepository from '../interfaces/IAuthenticateUserRepository'
+import IUser from '@Interfaces/IUser'
+import BaseService from './baseService'
+import bcrypt from 'bcryptjs'
 
-export default class CreateUserService {
-  private readonly authenticateUserRepository: IAuthenticateUserRepository
-  private readonly createUserRepository: ICreateUserRepository
-
-  constructor (
-    authenticateUserRepository: IAuthenticateUserRepository,
-    createUserRepository: ICreateUserRepository
-  ) {
-    this.authenticateUserRepository = authenticateUserRepository
-    this.createUserRepository = createUserRepository
-  }
-
-  public async execute (
-    email: string,
-    nome: string,
-    nascimento: string,
-    senha: string
-  ): Promise<IUser> {
-    const user: IUser | null = await this.authenticateUserRepository.execute(
-      email
+export default class CreateUserService<S extends IUser> extends BaseService<S> {
+  public async execute(item: S): Promise<S> {
+    const isEmailRegistered: S | null = await this._DAO.findOne(
+      'email',
+      item.email,
     )
 
-    if (user !== null) {
-      throw new BadRequestError('User ja cadastrado')
+    if (isEmailRegistered) {
+      throw this.badRequest('Email já cadastrado!')
     }
 
-    const newUser: IUser = await this.createUserRepository.execute(
-      email,
-      nome,
-      nascimento,
-      senha
-    )
+    const saltRound: number = 12
+    item.password = bcrypt.hashSync(item.password, saltRound)
 
-    return newUser
+    const user: S = await this._DAO.create(item)
+
+    return user
   }
 }
