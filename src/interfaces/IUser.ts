@@ -1,6 +1,4 @@
-import User from '../database/entities/User'
-
-export default interface IUser extends User {
+export default interface IUser {
   id: number
   name: string
   email: string
