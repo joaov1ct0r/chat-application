@@ -2,7 +2,7 @@ import databaseClient from '@Database/config/data-source'
 import { Repository, EntityTarget, FindOptionsWhere } from 'typeorm'
 
 export interface IBaseRepository<S> {
-  create(item: S): Promise<S>
+  create(item: Omit<S, 'id'>): Promise<S>
   findOne(key: string, value: string): Promise<S | null>
 }
 
