@@ -1,4 +1,5 @@
-import User from '@Database/entities/User'
 import { BaseRepository } from '@Database/repositories/baseRepository'
 
-export default class UserRepository extends BaseRepository<User> {}
+export default class UserRepository<
+  S extends object,
+> extends BaseRepository<S> {}
