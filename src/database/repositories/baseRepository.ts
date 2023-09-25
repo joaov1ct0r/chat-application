@@ -9,7 +9,7 @@ export interface IBaseRepository<S> {
 export abstract class BaseRepository<S extends object>
   implements IBaseRepository<S>
 {
-  public readonly _collection: Repository<S>
+  private readonly _collection: Repository<S>
 
   constructor(repository: EntityTarget<S>) {
     this._collection = databaseClient.getRepository(repository)
