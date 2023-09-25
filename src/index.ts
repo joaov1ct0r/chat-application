@@ -12,7 +12,9 @@ new App().server.listen(
       try {
         await databaseClient.initialize()
         console.log('DB Connected!!')
-        console.log(`Server running at ${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`)
+        console.log(
+          `Server running at ${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`,
+        )
         break
       } catch (error) {
         console.log(error)
@@ -21,5 +23,5 @@ new App().server.listen(
         await new Promise((resolve) => setTimeout(resolve, 5000))
       }
     }
-  }
+  },
 )
