@@ -23,7 +23,7 @@
     },
     "allowJs": true,
     "outDir": "build",
-    "rootDir": "src",
+    "rootDir": ".",
     "strict": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
@@ -43,6 +43,7 @@
     "experimentalSpecifierResolution": "node",
   },
   "include": [
-    "./src/**/*.ts"
-, "src/types/.d.ts"  ]
+    "./src/**/*.ts", 
+    "src/types/.d.ts"
+  ]
 }
