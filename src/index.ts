@@ -1,16 +1,25 @@
 import 'reflect-metadata'
-import 'dotenv/config'
-import App from './app'
-import ConnectDB from './utils/connectDb'
+import App from '@App'
+import databaseClient from '@Database/config/data-source'
 
-const db = new ConnectDB()
 new App().server.listen(
   Number(process.env.SERVER_PORT),
   String(process.env.SERVER_HOST),
-  () => {
-    db.execute().catch((error) => {
-      console.log(error)
-      console.log('Não foi possível se conectar ao DB')
-    })
+  async () => {
+    let retries = 5
+
+    while (retries > 0) {
+      try {
+        await databaseClient.initialize()
+        console.log('DB Connected!!')
+        console.log(`Server running at ${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`)
+        break
+      } catch (error) {
+        console.log(error)
+        retries -= 1
+        console.log(`retries left ${retries}!`)
+        await new Promise((resolve) => setTimeout(resolve, 5000))
+      }
+    }
   }
 )
