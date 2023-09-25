@@ -1,4 +1,4 @@
-export default class ForbiddenError extends Error {
+export default class Forbidden extends Error {
   public readonly message: string
   public readonly statusCode: number
 
