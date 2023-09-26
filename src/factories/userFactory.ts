@@ -12,6 +12,11 @@ export default class UserFactory {
           new CreateUserService(new UserRepository(User)),
           new Validator(),
         )
+      default:
+        return new CreateUserController(
+          new CreateUserService(new UserRepository(User)),
+          new Validator(),
+        )
     }
   }
 }
