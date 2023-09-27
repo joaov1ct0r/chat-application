@@ -1,39 +1,29 @@
-import 'dotenv/config'
-import IUser from '../interfaces/IUser'
-import BadRequestError from '../errors/BadRequestError'
-import UnathorizedError from '../errors/UnauthorizedError'
+import User from '@Database/entities/User'
+import BaseService from './baseService'
 import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-import IAuthenticateUserRepository from '../interfaces/IAuthenticateUserRepository'
 
-export default class AuthenticateUserService {
-  private readonly repository: IAuthenticateUserRepository
-
-  constructor (repository: IAuthenticateUserRepository) {
-    this.repository = repository
-  }
-
-  public async execute (email: string, senha: string): Promise<string> {
-    const user: IUser | null = await this.repository.execute(email)
-
-    if (user === null) {
-      throw new BadRequestError('Usuario não encontrado!')
-    }
-
-    const comparedPassword: boolean = bcrypt.compareSync(senha, user.senha)
-
-    if (!comparedPassword) {
-      throw new UnathorizedError('Falha na autenticação!')
-    }
-
-    const token: string = jwt.sign(
-      {
-        id: user.id
-      },
-      process.env.JWT_TOKEN_SECRET as string,
-      { expiresIn: 300 }
+export default class AuthenticateUserService<
+  S extends User,
+> extends BaseService<S> {
+  public async execute(item: S): Promise<S> {
+    const isUserRegistered: S | null = await this._DAO.findOne(
+      'email',
+      item.email,
     )
 
-    return token
+    if (!isUserRegistered) {
+      throw this.badRequest('Usuário não cadastrado!')
+    }
+
+    const isPasswordsMatching: boolean = bcrypt.compareSync(
+      item.password,
+      isUserRegistered.password,
+    )
+
+    if (!isPasswordsMatching) {
+      throw this.badRequest('Falha na autenticação!')
+    }
+
+    return isUserRegistered
   }
 }
