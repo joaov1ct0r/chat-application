@@ -14,7 +14,6 @@
       "@Routers/*": ["src/routes/*"],
       "@Validators/*": ["src/validators/*"],
       "@Services/*": ["src/services/*"],
-      "@Repositories/*": ["src/repositories/*"],
       "@Interfaces/*": ["src/interfaces/*"],
       "@Factories/*": ["src/factories/*"],
       "@Utils/*": ["src/utils/*"],
