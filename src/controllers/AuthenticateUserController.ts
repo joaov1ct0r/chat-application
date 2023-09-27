@@ -1,53 +1,48 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import BaseController from '@Controllers/baseController'
+import User from '@Database/entities/User'
 import { Request, Response } from 'express'
-import ValidateUser from '../validators/validateUserData'
-import AuthenticateUserService from '../services/AuthenticateUserService'
-import BadRequestError from '../errors/BadRequestError'
-import AuthenticateUserRepository from '../database/repositories/AuthenticateUserRepository'
+import jwt from 'jsonwebtoken'
 
-export default class AuthenticateUserController {
-  private readonly repository: AuthenticateUserRepository
-  private readonly validateUser: ValidateUser
-  private readonly authenticateUserService: AuthenticateUserService
+export default class AuthenticateUserController extends BaseController<User> {
+  public async handle(req: Request, res: Response): Promise<Response> {
+    const schema = this.zod.object({
+      email: this.zod.string({ required_error: 'EMAIL É OBRIGATORIO' }),
+      password: this.zod.string({ required_error: 'SENHA É OBRIGATORIO' }),
+    })
 
-  constructor () {
-    this.repository = new AuthenticateUserRepository()
-    this.validateUser = new ValidateUser()
-    this.authenticateUserService = new AuthenticateUserService(this.repository)
-  }
+    const data = this._validator.validate(schema, req.body)
 
-  public async handle (
-    req: Request,
-    res: Response
-  ): Promise<Response> {
-    const { error } = this.validateUser.loginValidate(req.body)
-
-    if (error != null) {
-      const err = new BadRequestError(error.message)
-
-      return res.status(err.statusCode).json({ error, status: err.statusCode })
+    if (!data.success) {
+      throw this.badRequest(data.error.issues[0].message)
     }
 
-    const email: string = req.body.email
+    const user: User = await this._service.execute({
+      email: req.body.user,
+      password: req.body.password,
+    } as User)
 
-    const senha: string = req.body.senha
+    const token: string = jwt.sign(
+      {
+        userId: user.id,
+        userEmail: user.email,
+        username: user.name,
+      },
+      process.env.JWT_TOKEN_SECRET as string,
+      { expiresIn: '1h' },
+    )
 
-    try {
-      const token: string = await this.authenticateUserService.execute(email, senha)
+    const maxCookieAge = Date.now() + 60 * 60 * 1000 // an hour
 
-      res.cookie('authorization', `Bearer ${token}`, {
-        httpOnly: true,
-        path: '/chat'
-      })
+    res.cookie('authorization', `Bearer ${token}`, {
+      httpOnly: true,
+      maxAge: maxCookieAge,
+      sameSite: true,
+      secure: true,
+      domain: process.env.SERVER_HOST,
+    })
 
-      return res
-        .status(200)
-        .json({ message: 'Login realizado com sucesso!', status: 200 })
-    } catch (err: any) {
-      return res.status(err.statusCode).json({
-        error: err.message,
-        status: err.statusCode
-      })
-    }
+    return res
+      .status(200)
+      .json({ message: 'Login realizado com sucesso!', status: 200 })
   }
 }
