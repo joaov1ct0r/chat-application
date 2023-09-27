@@ -1,22 +1,17 @@
 import express from 'express'
-import Resolver from '../utils/Resolver'
-import CreateUserController from '../controllers/CreateUserController'
-import AuthenticateUserController from '../controllers/AuthenticateUserController'
+import UserFactory from '@Factories/userFactory'
 
 const userRouter: express.Router = express.Router()
-const createUserController: CreateUserController = new CreateUserController()
-const authenticateUserController: AuthenticateUserController =
-  new AuthenticateUserController()
-const resolver: Resolver = new Resolver()
+const userFactory: UserFactory = new UserFactory()
+const createUser = userFactory.create('create')
+const authenticateUser = userFactory.create('authenticate')
 
-userRouter.post(
-  '/login',
-  resolver.handle(authenticateUserController.handle) // eslint-disable-line
+userRouter.post('/login', (req, res, next) =>
+  authenticateUser.handle(req, res).catch(next),
 )
 
-userRouter.post(
-  '/register',
-  resolver.handle(createUserController.handle) // eslint-disable-line
+userRouter.post('/register', (req, res, next) =>
+  createUser.handle(req, res).catch(next),
 )
 
 export default userRouter
