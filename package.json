@@ -69,6 +69,7 @@
     "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^5.0.1",
+    "socket.io": "^4.7.2",
     "swagger-ui-express": "^4.4.0",
     "typeorm": "^0.3.10",
     "winston": "^3.10.0",
