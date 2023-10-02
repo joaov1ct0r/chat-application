@@ -41,8 +41,11 @@ export default class AuthenticateUserController extends BaseController<User> {
       domain: process.env.SERVER_HOST,
     })
 
-    return res
-      .status(200)
-      .json({ message: 'Login realizado com sucesso!', status: 200 })
+    return res.status(200).json({
+      message: 'Login realizado com sucesso!',
+      status: 200,
+      token,
+      user,
+    })
   }
 }
