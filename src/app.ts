@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import cookieParser from 'cookie-parser'
-import cors from 'cors'
+import cors, { CorsOptions } from 'cors'
 import userRouter from './routes/userRoutes'
 import swaggerUi from 'swagger-ui-express'
 import swaggerDocs from './swagger.json'
@@ -15,13 +15,13 @@ export default class App {
   }
 
   private middlewares(): void {
-    this.server.use(
-      cors({
-        origin: '*',
-        credentials: true,
-        methods: ['GET', 'POST'],
-      }),
-    )
+    const corsOptions: CorsOptions = {
+      credentials: true,
+      exposedHeaders: ['set-cookie'],
+      origin: ['http://localhost:80'],
+      methods: ['GET', 'POST'],
+    }
+    this.server.use(cors(corsOptions))
     this.server.use(cookieParser())
     this.server.use(express.json())
     this.server.use(express.urlencoded({ extended: true }))
