@@ -5,20 +5,22 @@
     "lib": [
       "es6"
     ],
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@App": ["src/app.ts"],
-      "@Database/*": ["src/database/*"],
-      "@Errors/*": ["src/errors/*"],
-      "@Controllers/*": ["src/controllers/*"],
-      "@Routers/*": ["src/routes/*"],
-      "@Validators/*": ["src/validators/*"],
-      "@Services/*": ["src/services/*"],
-      "@Interfaces/*": ["src/interfaces/*"],
-      "@Factories/*": ["src/factories/*"],
-      "@Utils/*": ["src/utils/*"],
-      "@Logger": ["src/logger.ts"],
-      "@Middlewares/*": ["src/middlewares/*"]
+      "@Socket": ["ws/socket.ts"],
+      "@Redis": ["ws/redis.ts"],
+      "@App": ["api/src/app.ts"],
+      "@Database/*": ["api/src/database/*"],
+      "@Errors/*": ["api/src/errors/*"],
+      "@Controllers/*": ["api/src/controllers/*"],
+      "@Routers/*": ["api/src/routes/*"],
+      "@Validators/*": ["api/src/validators/*"],
+      "@Services/*": ["api/src/services/*"],
+      "@Interfaces/*": ["api/src/interfaces/*"],
+      "@Factories/*": ["api/src/factories/*"],
+      "@Utils/*": ["api/src/utils/*"],
+      "@Logger": ["api/src/logger.ts"],
+      "@Middlewares/*": ["api/src/middlewares/*"]
     },
     "allowJs": true,
     "outDir": "build",
@@ -32,17 +34,16 @@
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "typeRoots": ["./src/types"]
+    "typeRoots": ["api/src/types"]
   },
   "exclude": [
-    "./node_modules"
+    "node_modules"
   ],
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node"
   },
   "include": [
-    "./src/**/*.ts", 
-    "src/types/.d.ts"
+    "**/**/**/*.ts",
   ]
 }
