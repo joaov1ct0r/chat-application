@@ -1,0 +1,150 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Social Media JWT Rest Api",
+    "description": "API Rest de media social para cadastro e login de usuarios, e criação e interação de posts",
+    "contact": {
+      "linkedin": "https://www.linkedin.com/in/joaov1ct0r/"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/user/register": {
+      "post": {
+        "summary": "Cadastro de usuarios",
+        "description": "Rota para cadastro de novos usuarios",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "email": "user@mail.com",
+            "description": "Email do usuario a cadastrado",
+            "in": "body",
+            "required": true
+          },
+          {
+            "name": "User da Silva",
+            "description": "Nome do usuario a ser cadastrado",
+            "in": "body",
+            "required": true
+          },
+          {
+            "nascimento": "28/06/2022",
+            "description": "Data de nascimento do usuario a ser cadastrado",
+            "in": "body",
+            "required": true
+          },
+          {
+            "senha": "senha1234",
+            "description": "Senha do usuario a ser cadastrado",
+            "in": "body",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "email": "user@mail.com",
+                    "name": "user sobrenome",
+                    "bornAt": "28/06/2022",
+                    "password": "senha1234"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "400": {
+          "description": "Bad Request"
+        },
+        "301": {
+          "description": "Moved Permanently"
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "summary": "Login de usuarios",
+        "description": "Rota para Login de usuarios",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "email": "user@mail.com",
+            "description": "Email do usuario a ser realizar login",
+            "in": "body",
+            "required": true
+          },
+          {
+            "senha": "senha1234",
+            "description": "Senha do usuario a realizar login",
+            "in": "body",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "email": "user@mail.com",
+                    "senha": "senha1234"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unathorized"
+        },
+        "301": {
+          "description": "Moved Permanently"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "nascimento": {
+            "type": "string"
+          },
+          "senha": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
