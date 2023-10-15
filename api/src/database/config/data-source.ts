@@ -13,7 +13,7 @@ const databaseClient: DataSource = new DataSource({
   entities: [User],
   subscribers: [],
   migrations: ['src/migrations/**'],
-  migrationsRun: true
+  migrationsRun: true,
 })
 
 export default databaseClient
