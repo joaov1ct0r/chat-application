@@ -51,13 +51,13 @@ services:
     build:
       args:
         - NODE_ENV=development
-      context: .
+      context: ./api
       dockerfile: Dockerfile
       target: development
     image: api_chat_dev
-    entrypoint: ["/bin/sh", "./src/scripts/entrypoint_dev.sh"]
+    entrypoint: ["/bin/sh", "./api/src/scripts/entrypoint_dev.sh"]
     volumes:
-      - ./src:/usr/src/app/src
+      - ./api/src:/usr/src/app/src
     env_file:
       - .env.dev
     environment:
