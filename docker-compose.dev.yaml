@@ -20,10 +20,15 @@ services:
   redis:
     image: redis
     restart: always
+    env_file: .env.dev
+    environment:
+      - NODE_ENV=development
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
     volumes:
       - ./redisdataDev:/data
     ports:
-      - 6379:6379
+      - ${REDIS_PORT}:6379
 
   db:
     image: mysql
