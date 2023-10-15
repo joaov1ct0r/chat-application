@@ -19,7 +19,10 @@
     "test:verbose": "NODE_ENV='test'; jest --verbose"
   },
   "lint-staged": {
-    "./src/**/**/*.ts": [
+    "./api/src/**/**/*.ts": [
+      "eslint --fix"
+    ],
+    "./ws/src/**/**/*.ts": [
       "eslint --fix"
     ]
   },
