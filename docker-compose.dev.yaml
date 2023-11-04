@@ -8,19 +8,39 @@ services:
       context: ./nginx
       dockerfile: Dockerfile
     image: nginx_chat_dev
-    env_file: .env.dev
+    env_file: ./api/env.dev
     environment:
       - NODE_ENV=development
       - NGINX_HOST=${NGINX_HOST}
       - NGINX_PORT=${NGINX_PORT}
     restart: always
+    depends_on:
+      - socket
     ports:
       - ${NGINX_PORT}:80
+
+  socket:
+    build:
+      args:
+        - NODE_ENV=development
+      context: ./ws
+      dockerfile: Dockerfile
+    image: ws_chat_dev
+    env_file: ./ws/.env.dev
+    restart: always
+    depends_on:
+      - redis
+    environment:
+      - NODE_ENV=development
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - SOCKET_HOST=${SOCKET_HOST}
+      - SOCKET_PORT=${SOCKET_PORT}
 
   redis:
     image: redis
     restart: always
-    env_file: .env.dev
+    env_file: ./api/env.dev
     environment:
       - NODE_ENV=development
       - REDIS_HOST=${REDIS_HOST}
@@ -34,7 +54,7 @@ services:
     image: mysql
     restart: always
     env_file:
-      - .env.dev
+      - ./api/env.dev
     environment:
       - NODE_ENV=development
       - MYSQL_USER=${DB_USER}
@@ -59,11 +79,12 @@ services:
     volumes:
       - ./api/src:/usr/src/app/src
     env_file:
-      - .env.dev
+      - ./api/env.dev
     environment:
       - NODE_ENV=development
     restart: always
     depends_on:
+      - socket
       - nginx
       - db
       - redis

@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "lib": [
+      "es6"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@Socket": ["src/socket.ts"],
+      "@Redis": ["src/redis.ts"],
+    },
+    "allowJs": true,
+    "outDir": "build",
+    "rootDir": ".",
+    "strict": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noEmitOnError": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
+  "include": [
+    "**/**/**/*.ts",
+  ]
+}
